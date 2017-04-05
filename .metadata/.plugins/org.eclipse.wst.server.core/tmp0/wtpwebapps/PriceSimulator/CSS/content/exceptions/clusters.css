@@ -1,0 +1,222 @@
+div.clusterleftpanel
+{
+	float: left;
+	margin: 0.5%; 
+	width: 28.5%;
+	height: 99%;
+	background: #ffffff;
+	border-radius: 5px;
+}
+div.clusterrightpanel
+{
+	float: right;
+	margin: 0.5%;
+	margin-left: 1%;
+	width: 90%;
+	height: 99%;
+	background: #ffffff;
+	border-radius: 5px;
+	overflow: auto;
+}
+div.clusterleftpanel > div.head
+{
+	float: left;
+	margin: 2%;
+	width: 96%;
+	height: 60px;
+	outline: 1px dashed #4ba2c6;
+    outline-offset: -5px;
+    background-color: #4ba2c6;
+	border-radius: 5px 5px 0 0;     
+    -webkit-box-shadow: 2px 2px 2px #000;
+    -moz-box-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 2px #000;
+}
+div.clusterleftpanel > div.head > h2
+{
+	margin: 5%;
+	width: 90%;
+	height: 40px;
+    font-size: 22px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+	color: #ffffff;
+}
+div.clusterrightpanel > div.cluster
+{
+	display: inline-block;
+	float: left;
+	margin: 1%;
+	width: 47%;
+	height: 47%;
+	border-radius: 5px;
+	background: #ffffff;
+	border: 1px solid #000000;
+}
+div.clusterrightpanel > div.cluster > div.head
+{
+	float: left;
+    height: 10%;
+    width: 100%;
+	background-color: #4ba2c6;
+    border-radius: 5px 5px 0 0; 
+    -webkit-box-shadow: 2px 2px 2px #000;
+    -moz-box-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 2px #000;
+}
+div.clusterrightpanel > div.cluster > div.head > h2
+{
+	display: inline-block;
+	float: left;
+	margin: 1.5%;
+	width: 90%;
+	height: 60%;
+	color: #ffffff;
+	font-size: 15px;
+    font-weight: bold;
+}
+div.clusterrightpanel > div.cluster > div.head > span.delete
+{
+	margin: 0.5%;
+	padding: 0;
+	padding-top: 1.5%;
+	width: 5%;
+	height: 60%;
+	text-align: center;
+}
+div.clusterrightpanel > div.cluster > div.products
+{
+	width: 100%;
+	height: 90%;
+	overflow: auto;
+}
+div.clusterrightpanel > div.cluster > div.products > table
+{
+	margin: 0;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+	width: 99%;	
+	height: 100%;
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;   
+}
+div.clusterrightpanel > div.cluster > div.products > table tr:hover
+{
+    background: #a6a6a6;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}   
+div.clusterrightpanel > div.cluster > div.products > table td
+{
+	padding: 4px;	
+	min-width: 10px;
+	max-width: 350px;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    text-align: left;
+    color: #000000;
+}
+div.clusterrightpanel > div.cluster > div.products > table td:first-child
+{
+    border-left: none;
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+div.clusterrightpanel > div.cluster > div.products > table td:last-child
+{
+	text-align: center;
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+div.clusterrightpanel > div.cluster > div.products > table td > span.delete
+{
+	display: inline-block;
+	margin: 0;
+	padding: 20%;
+}
+div.clusterleftpanel > div.createcluster
+{
+	display: inline-block;
+	margin: 4%;
+	margin-top: 5%;
+	width: 92%;
+	height: 17%;	
+}
+div.clusterleftpanel > div.actions
+{
+	display: inline-block;
+	margin: 4%;
+	margin-top: 5%;
+	width: 92%;
+	height: 25%;
+}
+div.clusterleftpanel > div.report
+{
+	display: inline-block;
+	margin: 5%;
+	width: 90%;
+	height: 28%;
+}
+div.clusterleftpanel hr
+{
+	margin: 0;
+	margin-bottom: 2%;
+	width: 100%;
+}
+div.clusterleftpanel > div.actions > span.choosehead, div.clusterleftpanel > div.createcluster > span.namehead
+{
+	display: inline-block;
+	float: left;
+	margin-top: 2%;
+	margin-left: 1%;
+	width: 40%;
+	color:#000000;
+	letter-spacing:1pt;
+	word-spacing:2pt;
+	font-size:12px;
+	text-align:left;
+	font-family:arial, helvetica, sans-serif;
+	line-height:1;
+}
+div.clusterleftpanel > div.actions select.choosecluster, div.clusterleftpanel > div.createcluster > input.name
+{
+	display: inline-block;
+	margin-right: 1%;
+	width: 57%;
+	height: 25px;
+	color:#000000;
+	font-weight:bold;
+	letter-spacing:1pt;
+	word-spacing:2pt;
+	background: #ffffff;
+	border-radius: 2px;
+	border: 1px solid #4ba2c6;
+}
+div.clusterleftpanel > div.actions span.downtemp, div.clusterleftpanel > div.createcluster > span.create, div.clusterleftpanel > div.actions input.browse, div.clusterleftpanel > div.actions input.savetemp
+{
+	display: inline-block;
+	margin: 5%;
+	margin-top: 2%;
+	margin-bottom: 0;
+	width: 90%;
+	height: 25px;
+	line-height: 2;
+}
+div.report > div.bar
+{
+	margin-left: 35%;
+	margin-right: 35%;
+	width: 30%;
+	height: 40%;
+}

@@ -1,0 +1,2 @@
+SUPC,Seller,StartTime[dd-MM-yyyy HH:mm](optional),EndTime[dd-MM-yyyy HH:mm](optional),Comments(optional),Source(optional in PS),Action,ID(optional),Delete All(Optional/Y/N)
+1003145,a6f14d,11-08-2016 00:00,11-08-2016 02:30,comments,PS,ADD,,

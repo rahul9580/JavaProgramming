@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package algo;
+
+/**
+ * @author rahul
+ *
+ */
+public class CheckMaxOrMin {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		
+
+	}
+
+	private static int countMAxMin(int a, int b) {
+		
+	}
+}

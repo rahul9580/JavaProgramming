@@ -1,0 +1,168 @@
+div.exprpleftpanel
+{
+	display: inline-block;
+	float: left;
+	margin: 0.5%;
+	width: 25%;
+	height: 99%;
+	background: #ffffff;
+	border-radius: 5px;
+}
+div.exprprightpanel
+{
+	display: inline-block;
+	margin: 0.5%;
+	margin-left: 0;
+	width: 73%;
+	height: 99%;
+	background: #ffffff;
+	border-radius: 5px;
+	overflow: auto;
+}
+div.exprprightpanel > table.products
+{
+	margin: 1%;
+	width: 98%;
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;         
+}
+div.exprprightpanel > table.products tr:hover
+{
+    background: #a6a6a6;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}   
+div.exprprightpanel > table.products td
+{
+	min-width: 10px;
+	max-width: 350px;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 4px;
+    text-align: left;
+    color: #000000;
+}
+div.exprprightpanel > table.products th
+{
+	min-width: 10px;
+	max-width: 350px;
+	padding: 4px;
+	color: #ffffff;
+	font-size: 16px;
+	text-align: center;
+    background-color: #4ba2c6;
+	border-top: none;
+}
+div.exprprightpanel > table.products th:first-child
+{
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+div.exprprightpanel > table.products th:last-child
+{
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+div.exprprightpanel > table.products td:first-child
+{
+    border-left: none;
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+div.exprprightpanel > table.products td:last-child
+{
+	text-align: center;
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+div.exprprightpanel > table.products span.deleteall
+{
+	width: 18px;
+	height: 18px;
+	line-height: 1.5;
+}
+div.exprprightpanel > table.products span.delete
+{
+	width: 15px;
+	height: 15px;
+	line-height: 1.2;
+}
+div.exprpleftpanel > div.head
+{
+	float: left;
+    margin: 2%;
+	width: 96%;
+	height: 60px;
+    background-color: #4ba2c6;
+    outline: 1px dashed #4ba2c6;
+    outline-offset: -5px;
+    border-radius: 5px 5px 0 0;
+    -webkit-box-shadow: 2px 2px 2px #000;
+    -moz-box-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 2px #000;
+}
+div.exprpleftpanel > div.head > h2
+{
+	margin: 5%;
+	width: 90%;
+	height: 40px;
+	font-size: 22px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+}
+div.exprpleftpanel > div.content
+{
+	float: left;
+	margin: 5%;
+	width: 90%;
+	height: 45%;
+}
+div.exprpleftpanel > div.content form
+{
+	width: 100%;
+	height: 100%;
+}
+div.exprpleftpanel > div.content textarea.manualinput
+{
+	resize: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 90%;
+}
+div.exprpleftpanel span.downtemp, div.exprpleftpanel input.browse, div.exprpleftpanel input.savetemp, div.exprpleftpanel input.addsupc 
+{
+	margin: 5%;
+	margin-top: 2%;
+	margin-bottom: 0;
+	width: 90%;
+	height: 25px;
+	line-height: 2;
+}
+div.exprpleftpanel > div.report
+{
+	margin: 5%;
+	width: 90%;
+	height: 12%;
+}
+div.report > div.bar
+{
+	margin-left: 35%;
+	margin-right: 35%;
+	width: 30%;
+	height: 40%;
+}

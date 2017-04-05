@@ -1,0 +1,148 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet"
+	href="/PriceSimulator/CSS/content/menubar.css" media="screen" />
+	
+</head>
+<body>
+	<div class="menu">
+		<span class="filterhead">Category Filter</span>
+		<ul class="menubar">
+			<s:if test="%{#session.current==\"home\"}">
+				<li id="home" class="active"><a href="#" class="home">Home</a></li>
+			</s:if>
+			<s:else>
+				<li id="home"><a href="/PriceSimulator/home.action"
+					class="home">Home</a></li>
+			</s:else>
+			<s:if test="%{#session.current==\"viewSummary\"}">
+				<li id="viewSummary" class="active"><a href="#">View Summary</a></li>
+			</s:if>
+			<s:else>
+				<li id ="viewSummary"><a href="/PriceSimulator/viewSummary.action">View Summary </a>
+			 </s:else>
+			
+			<s:if test="%{#session.current==\"rules\"}">
+				<li id="rules" class="active"><a href="#">Pricing Rules</a></li>
+			</s:if>
+			<s:else>
+				<li id="rules"><a href="/PriceSimulator/rules.action">Pricing
+						Rules</a></li>
+			</s:else>
+			<s:if test="%{#session.current.contains(\"exceptions\")}">
+				<li id="exceptions" class="dropdown active"><a href="#">Product Configuration</a>
+					<ul class="large">
+					
+					<%-- 	<s:if test="%{#session.current==\"exceptions/createclusters\"}">
+							<li><a href="#">Create Clusters</a></li>
+						</s:if>
+						<s:else>
+							<li><a
+								href="/PriceSimulator/exceptions/createclusters.action">Create
+									Clusters</a></li>
+						</s:else> --%>
+						
+							<s:if test="%{#session.current==\"exceptions/clusters\"}">
+							<li><a href="/PriceSimulator/exceptions/clusters.action">Manage Clusters</a></li>
+						</s:if>
+						<s:else>
+							<li><a href="/PriceSimulator/exceptions/clusters.action">Manage
+									Clusters</a></li>
+									
+						</s:else>
+						
+							<s:if test="%{#session.current==\"exceptions/manageSubcat\"}">
+							<li><a href="#">Manage Subcat</a></li>
+						</s:if>
+						<s:else>
+							<li><a
+								href="/PriceSimulator/exceptions/manageSubcat.action">Manage Subcat</a></li>
+						</s:else>
+						
+						
+						<s:if test="%{#session.current==\"exceptions/product\"}">
+							<li><a href="#">Manage Products</a></li>
+						</s:if>
+						<s:else>
+							<li><a href="/PriceSimulator/exceptions/product.action">Manage
+									Products</a></li>
+						</s:else>
+						<s:if test="%{#session.current==\"exceptions/mop\"}">
+							<li><a href="#">Set Products MOP</a></li>
+						</s:if>
+						<s:else>
+							<li><a href="/PriceSimulator/exceptions/mop.action">Set
+									MOP for Products</a></li>
+						</s:else>
+						<s:if test="%{#session.current==\"exceptions/removeproduct\"}">
+							<li><a href="#">Remove from Simulator</a></li>
+						</s:if>
+						<s:else>
+							<li><a
+								href="/PriceSimulator/exceptions/removeproduct.action">Remove
+									from Simulator</a></li>
+						</s:else>
+					</ul></li>
+			</s:if>
+			<s:else>
+				<li id="exceptions" class="dropdown"><a href="#">Product Configuration</a>
+					<ul class="large">
+						<li><a href="/PriceSimulator/exceptions/clusters.action">Manage
+								Clusters</a></li>
+					
+						<li><a
+							href="/PriceSimulator/exceptions/manageSubcat.action">Manage 
+								Subcat</a></li>		
+						
+						<li><a href="/PriceSimulator/exceptions/product.action">Manage
+								Products</a></li>
+						<li><a href="/PriceSimulator/exceptions/mop.action">Set
+								MOP for Products</a></li>
+						<li><a href="/PriceSimulator/exceptions/removeproduct.action">Remove
+								from Simulator</a></li>
+					</ul></li>
+			</s:else>
+			<li id="logout" class="dropdown"><a href="#"><s:property
+						value="%{#session.user.getEmail()}" /></a>
+				<ul>
+					<li><a href="#" onclick="confirmLogout(<s:property value="#session.updateMadeInSession"/>)">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+	function confirmLogout(ifChangesMade)
+	{		$.ajax(
+			{	type : "POST",
+				dataType: 'html',
+				url : '/PriceSimulator/logout.action',
+				success : function(data)
+				{
+					if(data == 2)
+					{
+						var choice = confirm("Do you want to logout........");
+						
+						if(choice)
+						{
+							window.location="logout.action?confirmLogout=true";
+						}
+						
+							
+					}
+					else
+					{
+						window.location="viewSummary.action";
+					}
+				}
+			});
+}
+	</script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</body>
+</html>

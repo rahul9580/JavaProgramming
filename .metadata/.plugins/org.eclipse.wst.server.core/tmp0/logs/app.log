@@ -1,0 +1,263 @@
+[2017-02-01 13:34:29,210] ERROR  [org.springframework.web.context.ContextLoader] [331] [localhost-startStop-1]: Context initialization failed 
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'brandService' defined in file [/home/rahul/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PriceSimulator/WEB-INF/classes/database/service/BrandService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [database.service.BrandService]: Constructor threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rulesActionDao': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.cache.IPsGroupCacheService com.snapdeal.dao.impl.RulesActionDaoImpl.psGroupCacheService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'psGroupCacheService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1101)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1046)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:755)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:762)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:403)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:306)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:106)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [database.service.BrandService]: Constructor threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rulesActionDao': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.cache.IPsGroupCacheService com.snapdeal.dao.impl.RulesActionDaoImpl.psGroupCacheService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'psGroupCacheService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:163)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1094)
+	... 22 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'rulesActionDao': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.cache.IPsGroupCacheService com.snapdeal.dao.impl.RulesActionDaoImpl.psGroupCacheService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'psGroupCacheService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:969)
+	at database.service.BrandService.<init>(BrandService.java:55)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:147)
+	... 24 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.cache.IPsGroupCacheService com.snapdeal.dao.impl.RulesActionDaoImpl.psGroupCacheService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'psGroupCacheService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:561)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 38 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'psGroupCacheService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	... 40 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.dao.cache.IPsGroupCacheDao com.snapdeal.monetization.ps.service.cache.impl.PsGroupCacheServiceImpl.psGroupCacheDao; nested exception is java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:561)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 51 more
+Caused by: java.lang.NoClassDefFoundError: com/snapdeal/monetization/common/GroupInfoTo
+	at java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+	at java.lang.Class.getDeclaredMethods(Class.java:1975)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:571)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:488)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:474)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:241)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1065)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1038)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	... 53 more
+Caused by: java.lang.ClassNotFoundException: com.snapdeal.monetization.common.GroupInfoTo
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1702)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1547)
+	... 72 more
+[2017-02-01 14:51:29,741] INFO   [com.snapdeal.service.PSService] [179] [localhost-startStop-1]: cachemanager:::com.snapdeal.monetization.base.aerospike.cache.CacheManager@7368e190 
+[2017-02-01 14:51:29,927] ERROR  [com.snapdeal.service.PSService] [203] [localhost-startStop-1]: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'subcatSupcProcessService': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.IProductRatingService com.snapdeal.service.Impl.SubcatSupcProcessServiceImpl.productRatingService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'productRatingServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.service.PSService com.snapdeal.monetization.ps.service.impl.ProductRatingServiceImpl.psService; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'psService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:969)
+	at com.snapdeal.service.PSService.<init>(PSService.java:186)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:147)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1094)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1046)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:504)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:755)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:762)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:480)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:403)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:306)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:106)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.monetization.ps.service.IProductRatingService com.snapdeal.service.Impl.SubcatSupcProcessServiceImpl.productRatingService; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'productRatingServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.service.PSService com.snapdeal.monetization.ps.service.impl.ProductRatingServiceImpl.psService; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'psService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:561)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 77 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'productRatingServiceImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.service.PSService com.snapdeal.monetization.ps.service.impl.ProductRatingServiceImpl.psService; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'psService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1210)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:537)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:476)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:303)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	... 79 more
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.snapdeal.service.PSService com.snapdeal.monetization.ps.service.impl.ProductRatingServiceImpl.psService; nested exception is org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'psService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:561)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:331)
+	... 90 more
+Caused by: org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'psService': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:347)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:299)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:194)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1120)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1044)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:942)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:533)
+	... 92 more
+ 
+[2017-02-01 14:51:30,999] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/ipms/ with property name initial as : ipmsserver. 
+[2017-02-01 14:51:31,007] INFO   [com.snapdeal.ipms.client.service.impl.IPMSClientServiceImpl] [173] [localhost-startStop-1]: Setting web service base URL for ipms : http://10.41.92.53:8010 
+[2017-02-01 14:51:31,221] INFO   [com.snapdeal.service.Impl.QuartzService] [51] [Thread-8]: Starting Quartz server on host: 10.41.57.87 and port: 8099 
+[2017-02-01 14:51:31,286] INFO   [com.snapdeal.service.Impl.QuartzService] [101] [Thread-8]: Quartz server props: {org.quartz.dataSource.quartzDataSource.user=scraper, org.quartz.dataSource.quartzDataSource.driver=com.mysql.jdbc.Driver, org.quartz.scheduler.instanceId=NON_CLUSTERED, org.quartz.jobStore.tablePrefix=QRTZ_, org.quartz.scheduler.skipUpdateCheck=true, org.quartz.jobStore.class=org.quartz.impl.jdbcjobstore.JobStoreTX, org.quartz.scheduler.rmi.registryPort=8099, org.quartz.dataSource.quartzDataSource.password=Scraper@123, org.quartz.threadPool.class=org.quartz.simpl.SimpleThreadPool, org.quartz.scheduler.rmi.registryHost=10.41.57.87, org.quartz.dataSource.quartzDataSource.URL=jdbc:mysql://10.41.57.87:3306/quartz, org.quartz.jobStore.isClustered=false, org.quartz.dataSource.quartzDataSource.validationQuery=SELECT 1, org.quartz.scheduler.rmi.createRegistry=true, org.quartz.jobStore.misfireThreshold=14400000, org.quartz.scheduler.rmi.export=true, org.quartz.scheduler.misfirePolicy=doNothing, org.quartz.dataSource.quartzDataSource.maxConnections=23, org.quartz.threadPool.threadCount=20, org.quartz.jobStore.driverDelegateClass=org.quartz.impl.jdbcjobstore.StdJDBCDelegate, org.quartz.jobStore.dataSource=quartzDataSource, org.quartz.scheduler.jobFactory.class=org.quartz.simpl.SimpleJobFactory, quartz.scheduler.instanceName=ServerScheduler} 
+[2017-02-01 14:51:31,403] INFO   [com.snapdeal.consumers.SubcatProcessConsumerThread] [27] [SubcatProcess-0]: Starting SubcatProcessConsumerThread 
+[2017-02-01 14:51:31,412] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-0]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,414] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-3]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-4]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-6]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-7]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,413] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-2]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,413] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-1]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.service.PSService] [6666] [localhost-startStop-1]: inside loadSupcThreadCount 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-8]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,415] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-5]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:31,422] INFO   [com.snapdeal.consumers.SchedulerSupcProcessConsumerThread] [27] [SchedulerSUPCProcess-9]: Starting SchedulerSupcProcessConsumerThread 
+[2017-02-01 14:51:32,839] INFO   [com.snapdeal.service.PSService] [6697] [localhost-startStop-1]: exiting loadSupcThreadCount 
+[2017-02-01 14:51:32,842] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [172] [localhost-startStop-1]: SubcategorySupcProcessSubcat consumer initiating... 
+[2017-02-01 14:51:32,864] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [180] [localhost-startStop-1]: SubcategorySupcProcess consumer initiated. 
+[2017-02-01 14:51:32,864] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [139] [localhost-startStop-1]: Scrapper queue consumer initiating... 
+[2017-02-01 14:51:32,866] INFO   [com.snapdeal.service.Impl.QuartzService] [55] [Thread-8]: Started Quartz server on host: 10.41.57.87 and port: 8099 
+[2017-02-01 14:51:33,352] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [142] [localhost-startStop-1]: Scrapper queue consumer initiated. 
+[2017-02-01 14:51:33,354] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [144] [localhost-startStop-1]: Markeing-fee-flag consumer initiating... 
+[2017-02-01 14:51:33,448] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [147] [localhost-startStop-1]: Markeing-fee-flag consumer initiated. 
+[2017-02-01 14:51:33,448] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [149] [localhost-startStop-1]: Analytics queue consumer initiating... 
+[2017-02-01 14:51:33,448] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [150] [localhost-startStop-1]: Analytics queue consumer initiated. 
+[2017-02-01 14:51:33,449] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [152] [localhost-startStop-1]: SubcategorySupcProcessSupc consumer initiating... 
+[2017-02-01 14:51:33,449] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [158] [localhost-startStop-1]: SubcategorySupcProcess consumer initiated. 
+[2017-02-01 14:51:33,449] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [160] [localhost-startStop-1]: RFS consumer initiating... 
+[2017-02-01 14:51:33,536] INFO   [com.snapdeal.service.Impl.ScraperKafkaServiceImpl] [162] [localhost-startStop-1]: RFS consumer initiated. 
+[2017-02-01 14:51:33,829] INFO   [com.snapdeal.service.Impl.OcpBulkuploadSchedulerServiceImpl] [59] [localhost-startStop-1]: Going to schedule one time scheduled tasks 
+[2017-02-01 14:51:33,829] INFO   [com.snapdeal.service.Impl.OcpBulkuploadSchedulerServiceImpl] [61] [localhost-startStop-1]: Fetching tax factor from db 
+[2017-02-01 14:51:33,829] INFO   [com.snapdeal.service.PSService] [10137] [localhost-startStop-1]: Inside fetchTaxFactorFromDB:: 
+[2017-02-01 14:51:33,834] INFO   [com.snapdeal.service.ErrorReport] [32] [localhost-startStop-1]: Exiting fetchTaxFactorFromDB:::::: 
+[2017-02-01 14:51:33,834] INFO   [com.snapdeal.service.ErrorReport] [32] [localhost-startStop-1]: Exiting fetchTaxFactorFromDB:::::: 
+[2017-02-01 14:51:33,834] INFO   [com.snapdeal.service.Impl.OcpBulkuploadSchedulerServiceImpl] [64] [localhost-startStop-1]: Fetching pcc from db 
+[2017-02-01 14:51:33,834] INFO   [com.snapdeal.service.ErrorReport] [32] [localhost-startStop-1]: Inside fetchPCCFromDB:::::: 
+[2017-02-01 14:51:33,837] INFO   [com.snapdeal.service.ErrorReport] [32] [localhost-startStop-1]: Exiting fetchPCCFromDB:::::: 
+[2017-02-01 14:51:33,838] INFO   [com.snapdeal.service.ErrorReport] [32] [localhost-startStop-1]: Exiting fetchPCCFromDB:::::: 
+[2017-02-01 14:51:33,839] INFO   [com.snapdeal.monetization.ps.dao.impl.PSParameterConfigDaoImpl] [59] [localhost-startStop-1]: Going to fetch param values for param type: ps-one-time-scheduled-task 
+[2017-02-01 14:51:33,842] INFO   [com.snapdeal.monetization.ps.dao.impl.PSParameterConfigDaoImpl] [79] [localhost-startStop-1]: Found parameter values: {end-sfcb-watcher-task=desired-host-name, start-sfcb-watcher-task=desired-host-name, shipping-engine-process-thread-task=desired-host-name} 
+[2017-02-01 14:51:33,961] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/oms/order/ with property name initial as : omsorderserver. 
+[2017-02-01 14:51:34,552] INFO   [com.snapdeal.service.PSService] [179] [localhost-startStop-1]: cachemanager:::com.snapdeal.monetization.base.aerospike.cache.CacheManager@7368e190 
+[2017-02-01 14:51:34,595] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/oms/payment/ with property name initial as : omspaymentserver. 
+[2017-02-01 14:51:34,602] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/oms/order/ with property name initial as : omsorderserver. 
+[2017-02-01 14:51:34,610] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/oms/transaction/ with property name initial as : omstransactionserver. 
+[2017-02-01 14:51:34,994] INFO   [com.snapdeal.base.cache.scheduler.impl.ReloadCacheSchedulerImpl] [165] [localhost-startStop-1]: Initializing ExecutorService  'reloadCacheScheduler' 
+[2017-02-01 14:51:35,022] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/promoAPIService/ with property name initial as : promoAPIService. 
+[2017-02-01 14:51:35,083] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/promoAPIService/ with property name initial as : promoAPIService. 
+[2017-02-01 14:51:35,089] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/promoAPIService/ with property name initial as : promoAPIService. 
+[2017-02-01 14:51:35,095] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/promoAPIService/ with property name initial as : promoAPIService. 
+[2017-02-01 14:51:35,100] INFO   [com.snapdeal.base.transport.service.impl.TransportServiceImpl] [135] [localhost-startStop-1]: Registering service : /service/promoAPIService/ with property name initial as : promoAPIService. 

@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<beans xmlns:tx="http://www.springframework.org/schema/tx" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+	<bean id="applicationContextProvder" class="com.snapdeal.listner.ApplicationContextProvider" />
+	
+	<context:component-scan base-package="database, database.service, com.snapdeal, utility,com.snapdeal.mail ">
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.base.*" />
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.monetization.base.retries.*" />
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.promo.*" />
+	</context:component-scan>
+
+	<context:component-scan base-package="com.snapdeal">
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.base.notification.*" />
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.base.startup.*" />
+		<context:exclude-filter type="regex"
+			expression="com.snapdeal.monetization.base.*" />
+	</context:component-scan>
+	<bean class="com.snapdeal.base.startup.config.AppEnvironmentContext"
+		id="appEnvironmentContext">
+		<constructor-arg value="ipmsserver" />
+	</bean>
+
+	<context:property-placeholder
+		location="classpath:nosql.properties, classpath:app.properties, classpath:db.properties" />
+
+ 	<task:annotation-driven executor="asyncExecutor" /> 
+	<task:executor id="asyncExecutor" pool-size="4-5"
+		queue-capacity="99999" rejection-policy="CALLER_RUNS" />
+	<task:executor id="cbkafkaEventSenderExecutor" pool-size="4-5"
+		queue-capacity="99999" rejection-policy="CALLER_RUNS" />
+		
+	<bean id="dataSource" name="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${ps_db_driverClassName}" />
+		<property name="jdbcUrl" value="${ps_db_url}" />
+		<property name="user" value="${ps_db_username}" />
+		<property name="password" value="${ps_db_password}" />
+		<property name="maxPoolSize" value="${ps_db_maxPoolSize}" />
+		<property name="minPoolSize" value="${ps_db_minPoolSize}" />
+		<property name="maxStatements" value="${ps_db_maxStatements}" />
+		<property name="preferredTestQuery" value="SELECT 1" />
+		<property name="testConnectionOnCheckin" value="true" />
+		<property name="idleConnectionTestPeriod" value="30" />
+		<property name="unreturnedConnectionTimeout" value="800" />
+		<property name="maxIdleTimeExcessConnections" value="240" />
+		<property name="debugUnreturnedConnectionStackTraces" value="true" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+	
+</beans>

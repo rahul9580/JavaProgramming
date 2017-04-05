@@ -1,0 +1,3 @@
+browsers=<?xml version\="1.0" encoding\="UTF-8"?>\n<web-browsers current\="0">\n<system/>\n<external location\="/usr/bin/firefox" name\="Firefox"/>\n<external location\="/usr/bin/google-chrome" name\="Chrome"/>\n</web-browsers>
+eclipse.preferences.version=1
+internalWebBrowserHistory=http\://localhost\:8080/PriceSimulator/|*|http\://localhost\:8080/PriceSimulator/WEB-INF/classes/com/snapdeal/monetization/budget/service/BudgetAlertService.java|*|http\://localhost\:8080/ptdashboard/userLogin|*|http\://localhost\:8080/ptdashboard/|*|http\://localhost\:8080/ptdashboard/userLogin;jsessionid\=64854F385D6BA1A503E7242CD23C0C69|*|

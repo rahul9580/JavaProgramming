@@ -1,0 +1,569 @@
+package ajaxhandle.rules;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.monetization.constant.ScheduledRuleConstant;
+import com.snapdeal.POJO.ScheduledProcessInfo;
+import com.snapdeal.listner.ApplicationContextProvider;
+import com.snapdeal.monetization.ps.constant.Constants;
+import com.snapdeal.service.AutoApprovalService;
+import com.snapdeal.service.PSService;
+import com.snapdeal.service.RulesActionService;
+import com.snapdeal.service.Impl.ScheduleRuleJobClient;
+
+import action.Action;
+import ajaxhandle.CompListingAction;
+import database.service.BrandService;
+import rules.ParameterType;
+import rules.RuleType;
+import utility.DateParser;
+import utility.Page;
+import utility.SessionObject;
+
+public class UpdateBrandAction extends Action
+{
+	private static Logger log = Logger.getLogger(UpdateBrandAction.class);
+	private String brandid;
+	private String brandname;
+	private String cm;
+	private String gm;
+	private String cd;
+	private String md;
+	private String nc;
+	private String ncgm;
+	private String idp;//Instant Discount %
+    private String wma;//Wallet min abs
+    private boolean   valueCheck;
+    private JSONArray brandidJSON;
+    private JSONArray brandnameJSON;
+    private JSONArray cmJSON;
+    private JSONArray gmJSON;
+    private JSONArray cdJSON;
+    private JSONArray mdJSON;
+    private JSONArray ncJSON;
+    private JSONArray ncgmJSON;
+    private JSONArray idpJSON;
+    private JSONArray wmaJSON;
+    private String[]  ptype;
+    private String[]  pvalue;
+    private JSONArray startTimeJSON;
+    private JSONArray endTimeJSON;
+    private String    startTime;
+    private String    endTime;
+	private String    operation;
+	private String competitorList;
+	private String cmpu;
+	private String nccmpu;
+	private JSONArray cmpuJSON;
+	private JSONArray nccmpuJSON;
+	public float cmpuLimit;
+	public float nccmpuLimit;
+	//private MailListService mail;
+	private BrandService brand;
+	private CompListingAction compListingAction = new CompListingAction();
+	
+	float cmlimit = 0;
+	float nclimit = 0;
+	private String gmpu;
+	private String ncgmpu;
+	
+	@Autowired
+	AutoApprovalService autoApprovalService;
+	@Autowired
+	RulesActionService rulesActionService;
+	
+	
+	PSService psService = null;
+	
+	public String execute()
+	{
+		
+		if(!userCheck())			return Page.LoginPage;
+		operate();
+		addSessionObject(SessionObject.updatesMadeInSession, "true");
+		return Page.ActivityPage;
+	}
+
+	public boolean parameterCheck() {
+		if (brandid != null && brandname != null && cm != null && gm != null && cd != null && md != null && nc != null)
+			return true;
+		else
+			return false;
+	}
+	
+	private void operate()
+	{
+		if(parameterCheck() && categorySelectionCheck())
+		{
+				psService = new PSService();
+				//mail = new MailListService(connection);
+				brand = new  BrandService();
+			
+				try {
+					brandidJSON = (JSONArray)new JSONParser().parse(this.brandid);
+					brandnameJSON = (JSONArray)new JSONParser().parse(this.brandname.replace("\\n", ""));
+					cmJSON = (JSONArray)new JSONParser().parse(this.cm);
+					gmJSON = (JSONArray)new JSONParser().parse(this.gm);
+					cdJSON = (JSONArray)new JSONParser().parse(this.cd);
+					mdJSON = (JSONArray)new JSONParser().parse(this.md);
+					ncJSON = (JSONArray)new JSONParser().parse(this.nc);
+					ncgmJSON = (JSONArray)new JSONParser().parse(this.ncgm);
+					cmpuJSON = (JSONArray)new JSONParser().parse(this.cmpu);
+	                nccmpuJSON = (JSONArray)new JSONParser().parse(this.nccmpu);
+					//idpJSON = (JSONArray) new JSONParser().parse(this.idp);
+					//wmaJSON = (JSONArray) new JSONParser().parse(this.wma);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				ptype = new String[brandidJSON.size()];
+				pvalue = new String[brandidJSON.size()];
+				
+				
+				
+				/*String limits = brand.getBrandLimit(getSubCategory());*/
+				HashMap< String, Double> limitMap = brand.getAutoApproveLimitBrand(getSubCategory());
+				if(limitMap!=null)
+				{
+					cmlimit= limitMap.get("CM").floatValue();
+					nclimit=limitMap.get("NCCM").floatValue();
+					cmpuLimit=limitMap.get("CMPU").floatValue();
+					nccmpuLimit=limitMap.get("NCCMPU").floatValue();
+				}
+				else{
+					// Default Handling
+					cmlimit = 0;
+					nclimit=0;
+                    cmpuLimit=0;
+                    nccmpuLimit=0;
+				}
+	
+				
+				for(Object cmValue : cmJSON)
+				{
+					if(cmValue.toString().trim().equals(""))
+						continue;
+					if(Float.parseFloat(cmValue.toString().trim()) < cmlimit)
+					{	
+					    setReport("CM>="+cmlimit);
+						return;
+					}
+				}
+				
+				
+				for(Object ncValue : ncJSON)
+				{
+					//handling for empty value of gm no competion
+					if(ncValue.toString().trim().equals(""))
+						continue;
+					if(Float.parseFloat(ncValue.toString().trim()) < nclimit)
+					{
+					    setReport("CM>="+cmlimit+" AND NC >="+nclimit);
+						return;
+					}
+				}
+				for(Object cmpuValue : cmpuJSON)
+				{
+					if(cmpuValue.toString().trim().equals(""))
+						continue;
+					if(Float.parseFloat(cmpuValue.toString().trim()) < cmpuLimit)
+					{
+						setReport("CM>="+cmlimit+" AND NC >="+nclimit +"AND CMPU >= "+cmpuLimit);
+						return;
+					}
+				}
+				for(Object nccmpuValue : nccmpuJSON)
+				{
+					if(nccmpuValue.toString().trim().equals(""))
+						continue;
+					if(Float.parseFloat(nccmpuValue.toString().trim()) < nccmpuLimit)
+					{
+						setReport("CM>="+cmlimit+" AND NC >="+nclimit +" AND CMPU >= "+cmpuLimit +" AND NCCMPU >= "+nccmpuLimit);
+						return;
+					}
+				}
+				
+				if(competitorList!=null && !"".equals(competitorList)){
+					ArrayList<String> allComp;
+					allComp= compListingAction.compListing();
+					String[] selectedComp = getCompetitorList().trim().split(",");
+					if(allComp.size()==selectedComp.length){
+						setCompetitorList("ALL");
+					}
+					
+				}
+				ScheduleRuleJobClient scheduleRuleJobClient = ApplicationContextProvider.getApplicationContext().getBean("scheduleRuleJobClient", ScheduleRuleJobClient.class);
+				validationCheck();
+				if (!valueCheck) {
+					return ;
+				}
+					for(int i=0; i<brandidJSON.size(); i++){
+						//String existingGroupId= psService.ifRuleExist(getSubCategory() ,"rules_brands", (""+brandidJSON.get(i)).trim());
+						int autoApprovalStatus = autoApprovalService.getAutoApprovalClusterOrBrandStatus(ptype[i], pvalue[i], limitMap, DateParser.toDate(startTime), DateParser.toDate(endTime));
+						log.info("the autoApprovalStatus for ptype:"+ptype[i]+" & pValue:"+pvalue[i]+" is :"+autoApprovalStatus);
+					    Integer ruleId=brand.update(getSubCategory(), Integer.parseInt((""+brandidJSON.get(i)).trim()), ""+brandnameJSON.get(i), RuleType.Competetive, ptype[i], pvalue[i], getUser().getEmail(),DateParser.toDate(startTime),DateParser.toDate(endTime),competitorList,0);
+					    if(autoApprovalStatus==1 || autoApprovalStatus==3){
+					    	rulesActionService.takeAction(getSubCategory(), ruleId, ScheduledRuleConstant.RULES_BRANDS, 1, getUser().getEmail());
+					    }
+                        if (ruleId == null) {
+                            setReport("Update Failed");
+
+                        } else {
+                            ScheduledProcessInfo scheduledProcessInfo = new ScheduledProcessInfo();
+                            scheduledProcessInfo.setEndTime(DateParser.toDate(endTime));
+                            scheduledProcessInfo.setStartTime(DateParser.toDate(startTime));
+                            scheduledProcessInfo.setSubcatId(getSubCategory());
+                            scheduledProcessInfo.setRuleId(String.valueOf(ruleId));
+                            scheduledProcessInfo.setRuleTypeId(ScheduledRuleConstant.RULES_BRANDS);
+                            scheduledProcessInfo.setAddedBy(getUser().getEmail());
+                            scheduleRuleJobClient.submitJob(scheduledProcessInfo);
+                            if(autoApprovalStatus==1 || autoApprovalStatus==3){
+                            	setReport(Constants.SUCCESS_AND_AUTO_APPROVED);
+                            }
+                            else
+                            {
+                            	setReport(Constants.SUCCESSFULLY_UPDATED);
+                            }
+                           
+                        }
+					    /*if(!("".equalsIgnoreCase(existingGroupId))){
+					        existingGroupId = existingGroupId.substring(0,existingGroupId.length()-1);
+					        psService.updateApprovalStatus(getSubCategory() , existingGroupId);
+					    }*/
+					}
+				}
+		
+	}
+	private void validationCheck()
+	{
+		valueCheck = true;
+		
+		
+		for(int i=0; i<brandidJSON.size(); i++)
+		{
+			boolean flag=false;
+			ptype[i] = "";
+			pvalue[i] = "";
+			
+			if((""+cmJSON.get(i)).isEmpty())
+			{	setReport("CM Percent cannot be empty");
+				valueCheck = false;
+				return;
+			}
+			else	
+			{
+				ptype[i] = ptype[i] + ParameterType.CMRule + ParameterType.separator;
+				pvalue[i] = pvalue[i] + cmJSON.get(i) + ParameterType.separator;
+			}
+
+			if((""+gmJSON.get(i)).isEmpty())
+			{	setReport("GM Percent cannot be empty");
+				valueCheck = false;
+				return;
+			}
+			else	
+			{
+				ptype[i] = ptype[i] + ParameterType.GMRule + ParameterType.separator;
+				pvalue[i] = pvalue[i] + gmJSON.get(i) + ParameterType.separator;
+			}
+			
+		
+			if((""+cdJSON.get(i)).isEmpty())
+			{	setReport("Competitor Difference cannot be empty");
+				valueCheck = false;
+				return ;
+			}
+			else	
+			{
+				ptype[i] = ptype[i] + ParameterType.CompDiff + ParameterType.separator;
+				pvalue[i] = pvalue[i] + cdJSON.get(i) + ParameterType.separator;
+			}
+
+			if((""+mdJSON.get(i)).isEmpty())
+			{	setReport("Max Competitor Difference cannot be empty");
+				valueCheck = false;
+				return;
+			}
+			else	
+			{
+				ptype[i] = ptype[i] + ParameterType.MaxCompDiff + ParameterType.separator;
+				pvalue[i] = pvalue[i] + mdJSON.get(i) + ParameterType.separator;
+			}
+
+			
+			if((""+ncJSON.get(i)).isEmpty() && (""+ncgmJSON.get(i)).isEmpty() && (""+nccmpuJSON.get(i)).isEmpty())
+			{   
+				    flag = true;
+			}
+			else if(!(""+ncJSON.get(i)).isEmpty() && !(""+ncgmJSON.get(i)).isEmpty() && !(""+nccmpuJSON.get(i)).isEmpty())
+			{
+			    flag = true;
+			}
+			else{
+			    setReport("Either all the fields i.e. No competitor cm,gm and cmpu should be empty or all should not be empty");
+	            valueCheck=false;
+	            return;
+			}
+			
+			ptype[i] = ptype[i] + ParameterType.CMNoComp + ParameterType.separator;
+			if(flag){
+			    if(((String)ncJSON.get(i)).isEmpty()){
+			        pvalue[i] = pvalue[i] + "NULL" + ParameterType.separator;
+			    }
+			    else{
+			        pvalue[i] = pvalue[i] + ncJSON.get(i) + ParameterType.separator;
+			    }
+			}
+			else{
+			    pvalue[i] = pvalue[i] + "NULL" + ParameterType.separator;
+			}
+
+			ptype[i] = ptype[i] + ParameterType.GMNoComp+ ParameterType.separator;
+				if(flag){
+				    if(((String)ncgmJSON.get(i)).isEmpty()){
+	                       pvalue[i] = pvalue[i] + "NULL"+ ParameterType.separator;
+				    }
+				    else{
+                           pvalue[i] = pvalue[i] + ncgmJSON.get(i) + ParameterType.separator;
+				    }
+				}
+				else{
+				    pvalue[i] = pvalue[i] + "NULL"+ ParameterType.separator;
+				}
+			ptype[i] = ptype[i] + ParameterType.InsDiscPerc + ParameterType.separator;
+            if((this.idp).isEmpty())
+                pvalue[i] = pvalue[i] + "NULL" + ParameterType.separator;
+            else{
+            	if(Double.parseDouble(this.idp) < 0.0 || Double.parseDouble(this.idp) > 100.0){
+            		valueCheck=false;
+	            	setReport("Instant discount % should be between 0 - 100 range");
+	            	return;
+            	}
+                pvalue[i] = pvalue[i] + this.idp + ParameterType.separator;    
+            }
+            ptype[i] = ptype[i] + ParameterType.WalletMinAbs + ParameterType.separator ;
+            if((this.wma).isEmpty())
+                pvalue[i] = pvalue[i] + "NULL" + ParameterType.separator ;
+            else{
+            	if(Double.parseDouble(this.wma) < 0.0){
+            		valueCheck=false;
+            		setReport("Wallet Min Abs should not be negative or less than 0");
+            		return;
+            	}
+            	pvalue[i] = pvalue[i] + this.wma + ParameterType.separator;
+            }
+            
+            if((""+cmpuJSON.get(i)).isEmpty())
+            {
+                setReport("CMPU cannot be empty");
+                valueCheck = false;
+                return;
+            }
+            else    
+            {
+                ptype[i] = ptype[i] + ParameterType.CMPURule + ParameterType.separator;
+                pvalue[i] = pvalue[i] + cmpuJSON.get(i) + ParameterType.separator;
+            }
+            
+            ptype[i] = ptype[i] + ParameterType.CMPUNoComp;
+                
+            if(flag){
+                if(((String)nccmpuJSON.get(i)).isEmpty()){
+                    pvalue[i] = pvalue[i] + "NULL";
+                }else{
+                    pvalue[i] = pvalue[i] + nccmpuJSON.get(i);
+                }
+            }
+            else{
+                pvalue[i] = pvalue[i] + "NULL";
+            }
+		}
+		if (startTime.isEmpty()) {
+            setReport("Start time cannot be empty");
+            valueCheck = false;
+            return;
+        }
+        if (endTime.isEmpty()) {
+            setReport("End time cannot be empty");
+            valueCheck = false;
+            return;
+        }
+        
+        Timestamp startTimeStamp = new Timestamp(DateParser.toDate(startTime).getTime());
+        Timestamp endTimeStamp = new Timestamp(DateParser.toDate(endTime).getTime());
+        java.util.Date date= new java.util.Date();
+        
+        if (endTimeStamp.before(new Timestamp(date.getTime()))) {
+            setReport("End time is before current time");
+            valueCheck = false;
+            return;
+        }
+        else if (endTimeStamp.before(startTimeStamp)) {
+            setReport("End time is before start time");
+            valueCheck = false;
+            return;
+        }
+	}
+	public String getBrandid() {
+		return brandid;
+	}
+	public void setBrandid(String brandid) {
+		this.brandid = brandid;
+	}
+	public String getCm() {
+		return cm;
+	}
+	public void setCm(String cm) {
+		this.cm = cm;
+	}
+	public String getGm() {
+		return gm;
+	}
+	public void setGm(String gm) {
+		this.gm = gm;
+	}
+	public String getCd() {
+		return cd;
+	}
+	public void setCd(String cd) {
+		this.cd = cd;
+	}
+	public String getMd() {
+		return md;
+	}
+	public void setMd(String md) {
+		this.md = md;
+	}
+	public String getNc() {
+		return nc;
+	}
+	public void setNc(String nc) {
+		this.nc = nc;
+	}
+	public String getBrandname() {
+		return brandname;
+	}
+	public void setBrandname(String brandname) {
+		this.brandname = brandname;
+	}
+    public String getStartTime() {
+        return startTime;
+    }
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+    public String getEndTime() {
+        return endTime;
+    }
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getNcgm() {
+        return ncgm;
+    }
+    public void setNcgm(String ncgm) {
+        this.ncgm = ncgm;
+    }
+    /**
+     * @return the idp
+     */
+    public String getIdp() {
+        return idp;
+    }
+    /**
+     * @param idp the idp to set
+     */
+    public void setIdp(String idp) {
+        this.idp = idp;
+    }
+    /**
+     * @return the wma
+     */
+    public String getWma() {
+        return wma;
+    }
+    /**
+     * @param wma the wma to set
+     */
+    public void setWma(String wma) {
+        this.wma = wma;
+    }
+    /**
+     * @return the idpJSON
+     */
+    public JSONArray getIdpJSON() {
+        return idpJSON;
+    }
+    /**
+     * @param idpJSON the idpJSON to set
+     */
+    public void setIdpJSON(JSONArray idpJSON) {
+        this.idpJSON = idpJSON;
+    }
+    /**
+     * @return the wmaJSON
+     */
+    public JSONArray getWmaJSON() {
+        return wmaJSON;
+    }
+    /**
+     * @param wmaJSON the wmaJSON to set
+     */
+    public void setWmaJSON(JSONArray wmaJSON) {
+        this.wmaJSON = wmaJSON;
+    }
+
+	public String getCompetitorList() {
+		return competitorList;
+	}
+	public void setCompetitorList(String competitorList) {
+		this.competitorList = competitorList;
+	}
+	public String getCmpu() {
+		return cmpu;
+	}
+	public String getNccmpu() {
+		return nccmpu;
+	}
+	public JSONArray getCmpuJSON() {
+		return cmpuJSON;
+	}
+	public JSONArray getNccmpuJSON() {
+		return nccmpuJSON;
+	}
+	public void setCmpu(String cmpu) {
+		this.cmpu = cmpu;
+	}
+	public void setNccmpu(String nccmpu) {
+		this.nccmpu = nccmpu;
+	}
+	public void setCmpuJSON(JSONArray cmpuJSON) {
+		this.cmpuJSON = cmpuJSON;
+	}
+	public void setNccmpuJSON(JSONArray nccmpuJSON) {
+		this.nccmpuJSON = nccmpuJSON;
+	}
+	public String getGmpu() {
+		return gmpu;
+	}
+	public void setGmpu(String gmpu) {
+		this.gmpu = gmpu;
+	}
+
+	public String getNcgmpu() {
+		return ncgmpu;
+	}
+
+	public void setNcgmpu(String ncgmpu) {
+		this.ncgmpu = ncgmpu;
+	}
+   
+}

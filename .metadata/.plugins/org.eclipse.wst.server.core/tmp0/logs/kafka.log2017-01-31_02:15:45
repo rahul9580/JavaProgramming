@@ -1,0 +1,368 @@
+[2017-01-30 13:24:36,519] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,524] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 13:24:36,525] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,526] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,526] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,676] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,677] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 13:24:36,677] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,678] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:36,678] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:24:38,381] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:24:38,383] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 13:24:38,386] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:24:38,395] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 13:24:38,440] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 13:24:38,442] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 13:24:38,444] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 13:24:38,453] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 13:24:41,966] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:24:41,966] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 13:24:41,967] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 13:24:41,968] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 13:24:42,006] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:24:42,872] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:24:43,070] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:24:43,070] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 13:24:43,072] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 13:24:43,072] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 13:24:43,073] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:24:43,287] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 13:24:43,391] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 13:24:43,510] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 13:24:43,961] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 13:24:43,961] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:24:44,126] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 13:24:44,127] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:55:30,707] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [http-bio-8080-exec-9]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 13:55:30,741] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [http-bio-8080-exec-9]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 13:55:30,748] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [http-bio-8080-exec-9]: Initialized Kafka Producer with properties {retries=5, bootstrap.servers=[10.41.57.90:9092], acks=all, retry.backoff.ms=1000, compression.type=none, client.id=refresh-cache-event, max.in.flight.requests.per.connection=1} 
+[2017-01-30 13:55:32,877] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [105] [http-bio-8080-exec-9]: Kafka key null produced at topic-partition-offset::mtz_refresh_cache_event - 0 - 25 , value:: CacheInfo [type=cashback-config, key=cashback-config] 
+[2017-01-30 13:56:31,244] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,249] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 13:56:31,250] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,250] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,251] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,300] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,300] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 13:56:31,301] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,301] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:31,301] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 13:56:32,561] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:56:32,563] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 13:56:32,565] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:56:32,567] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 13:56:32,595] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 13:56:32,613] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 13:56:32,596] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 13:56:32,618] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,136] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:56:35,138] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 13:56:35,150] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 13:56:35,151] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,236] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,684] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,768] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 13:56:35,768] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 13:56:35,771] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,774] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 13:56:35,774] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 13:56:35,896] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 13:56:36,002] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 13:56:36,078] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 13:56:36,563] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 13:56:36,563] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:56:36,644] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 13:56:36,645] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 13:58:08,487] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: MTZBudget 
+[2017-01-30 13:58:08,487] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleApprover 
+[2017-01-30 13:58:08,488] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 13:58:08,488] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 13:58:08,488] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleId 
+[2017-01-30 13:58:08,488] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleRo 
+[2017-01-30 13:58:08,489] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 13:58:08,489] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleType 
+[2017-01-30 13:58:08,489] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 13:58:08,489] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 13:58:08,490] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleName 
+[2017-01-30 13:58:08,490] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 13:58:08,493] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-3]: Replaced all placeholders successfully 
+[2017-01-30 14:01:51,243] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:01:51,245] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:01:51,246] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:01:51,246] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:01:51,247] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleId 
+[2017-01-30 14:01:51,248] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:01:51,249] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:01:51,249] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleType 
+[2017-01-30 14:01:51,250] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:01:51,251] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:01:51,252] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleName 
+[2017-01-30 14:01:51,253] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-6]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:01:51,254] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-6]: Replaced all placeholders successfully 
+[2017-01-30 14:04:47,422] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,427] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:04:47,427] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,428] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,428] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,492] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,492] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:04:47,493] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,493] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:47,493] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:04:49,047] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:04:49,049] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 14:04:49,051] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:04:49,052] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 14:04:49,079] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 14:04:49,081] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 14:04:49,083] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 14:04:49,083] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,243] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:04:51,243] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:04:51,251] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 14:04:51,251] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,321] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,721] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,816] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:04:51,817] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:04:51,822] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,823] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 14:04:51,824] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 14:04:51,994] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:04:52,243] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:04:52,311] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 14:04:52,438] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [QuartzScheduler_Worker-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:04:52,466] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [QuartzScheduler_Worker-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:04:52,474] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [QuartzScheduler_Worker-1]: Initialized Kafka Producer with properties {retries=2, bootstrap.servers=[10.41.57.90:9092], acks=all, retry.backoff.ms=1000, compression.type=none} 
+[2017-01-30 14:04:52,784] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:04:52,785] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:52,860] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:04:52,861] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:04:53,877] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [105] [QuartzScheduler_Worker-1]: Kafka key 1485765292475 produced at topic-partition-offset::mtz_budget_job_event - 0 - 79 , value:: BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:04:53,914] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [123] [kafka-consumer-1]: kafka message found!!! 1485765292475, BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:05:51,451] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:05:51,452] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:05:51,453] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:05:51,453] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:05:51,454] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleId 
+[2017-01-30 14:05:51,454] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:05:51,455] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:05:51,456] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleType 
+[2017-01-30 14:05:51,456] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:05:51,457] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:05:51,457] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleName 
+[2017-01-30 14:05:51,458] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:05:51,474] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-2]: Replaced all placeholders successfully 
+[2017-01-30 14:09:50,378] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [http-bio-8080-exec-10]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:09:50,406] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [http-bio-8080-exec-10]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:09:50,410] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [http-bio-8080-exec-10]: Initialized Kafka Producer with properties {retries=5, bootstrap.servers=[10.41.57.90:9092], acks=all, retry.backoff.ms=1000, compression.type=none, client.id=refresh-cache-event, max.in.flight.requests.per.connection=1} 
+[2017-01-30 14:09:52,427] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [105] [http-bio-8080-exec-10]: Kafka key null produced at topic-partition-offset::mtz_refresh_cache_event - 0 - 26 , value:: CacheInfo [type=cashback-config, key=cashback-config] 
+[2017-01-30 14:11:13,140] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,144] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:11:13,144] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,145] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,145] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,197] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,198] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:11:13,198] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,198] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:13,198] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:11:14,450] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:11:14,452] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 14:11:14,454] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:11:14,454] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 14:11:14,482] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 14:11:14,484] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:14,484] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 14:11:14,485] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 14:11:16,860] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:11:16,860] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:11:16,865] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 14:11:16,865] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 14:11:16,979] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:17,468] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:17,564] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:11:17,564] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:11:17,565] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 14:11:17,565] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 14:11:17,577] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:17,738] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [QuartzScheduler_Worker-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:11:17,756] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:11:17,857] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:11:17,857] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [QuartzScheduler_Worker-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:11:17,924] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 14:11:17,924] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [QuartzScheduler_Worker-1]: Initialized Kafka Producer with properties {retries=2, bootstrap.servers=[10.41.57.90:9092], acks=all, retry.backoff.ms=1000, compression.type=none} 
+[2017-01-30 14:11:18,379] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:11:18,379] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:18,464] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:11:18,465] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:11:20,345] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [105] [QuartzScheduler_Worker-1]: Kafka key 1485765677926 produced at topic-partition-offset::mtz_budget_job_event - 0 - 80 , value:: BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:11:20,385] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [123] [kafka-consumer-1]: kafka message found!!! 1485765677926, BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:12:56,388] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:12:56,389] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:12:56,389] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:12:56,389] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleId 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleType 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:12:56,390] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:12:56,391] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleName 
+[2017-01-30 14:12:56,391] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-2]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:12:56,394] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-2]: Replaced all placeholders successfully 
+[2017-01-30 14:14:53,527] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:14:53,534] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:14:53,535] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:14:53,535] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:14:53,535] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleId 
+[2017-01-30 14:14:53,536] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:14:53,536] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:14:53,536] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleType 
+[2017-01-30 14:14:53,536] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:14:53,537] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:14:53,537] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleName 
+[2017-01-30 14:14:53,537] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-1]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:14:53,538] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-1]: Replaced all placeholders successfully 
+[2017-01-30 14:16:27,342] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:16:27,343] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:16:27,343] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:16:27,344] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:16:27,344] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleId 
+[2017-01-30 14:16:27,353] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:16:27,354] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:16:27,354] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleType 
+[2017-01-30 14:16:27,355] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:16:27,355] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:16:27,355] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleName 
+[2017-01-30 14:16:27,355] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:16:27,356] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-3]: Replaced all placeholders successfully 
+[2017-01-30 14:19:31,210] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [149] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Waiting for 10 seconds before invoking consumer shutdown, allowing consumer threads to complete. 
+[2017-01-30 14:19:41,276] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [149] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Waiting for 10 seconds before invoking consumer shutdown, allowing consumer threads to complete. 
+[2017-01-30 14:19:51,328] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducer] [208] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Stopping Kafka Producer... 
+[2017-01-30 14:20:26,805] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,809] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:20:26,809] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,810] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,810] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,874] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,874] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 14:20:26,875] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,875] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:26,876] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 14:20:28,077] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:20:28,078] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 14:20:28,079] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:20:28,079] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 14:20:28,098] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 14:20:28,100] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 14:20:28,106] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:28,106] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 14:20:31,535] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:20:31,536] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:20:31,551] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 14:20:31,551] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 14:20:31,695] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:32,178] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:32,237] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 14:20:32,238] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 14:20:32,240] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 14:20:32,242] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 14:20:32,243] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:32,404] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [QuartzScheduler_Worker-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:20:32,419] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 14:20:32,545] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [QuartzScheduler_Worker-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:20:32,546] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 14:20:32,641] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [QuartzScheduler_Worker-1]: Initialized Kafka Producer with properties {retries=2, bootstrap.servers=[10.41.57.90:9092], acks=all, retry.backoff.ms=1000, compression.type=none} 
+[2017-01-30 14:20:32,644] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 14:20:33,109] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:20:33,109] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:33,274] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 14:20:33,275] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 14:20:35,083] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [105] [QuartzScheduler_Worker-1]: Kafka key 1485766232642 produced at topic-partition-offset::mtz_budget_job_event - 0 - 81 , value:: BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:20:35,145] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [123] [kafka-consumer-1]: kafka message found!!! 1485766232642, BudetRuleJobTo [keyName=APPLY-18-SV, groupName=DEFAULT, jobDataMap={action=APPLY}] 
+[2017-01-30 14:22:23,600] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: MTZBudget 
+[2017-01-30 14:22:23,601] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleApprover 
+[2017-01-30 14:22:23,601] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleTrackingId 
+[2017-01-30 14:22:23,602] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleStartTime 
+[2017-01-30 14:22:23,602] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleId 
+[2017-01-30 14:22:23,603] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleRo 
+[2017-01-30 14:22:23,603] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleCreatedBy 
+[2017-01-30 14:22:23,604] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleType 
+[2017-01-30 14:22:23,605] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleSaleTarget 
+[2017-01-30 14:22:23,606] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleGSVTarget 
+[2017-01-30 14:22:23,606] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleName 
+[2017-01-30 14:22:23,607] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [51] [http-bio-8080-exec-3]: Replacing placeholder key: RuleEndTime 
+[2017-01-30 14:22:23,612] INFO   [com.snapdeal.monetization.base.velocityEngine.impl.VelocityEngineServiceImpl] [57] [http-bio-8080-exec-3]: Replaced all placeholders successfully 
+[2017-01-30 19:33:05,665] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,694] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 19:33:05,694] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,695] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,695] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,790] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,790] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 19:33:05,790] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,791] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:05,791] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [localhost-startStop-1]: Failed to parse property: ERROR 
+[2017-01-30 19:33:07,260] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 19:33:07,262] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 19:33:07,263] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 19:33:07,264] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 19:33:07,286] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-1]: Inside consume. 
+[2017-01-30 19:33:07,286] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-2]: Inside consume. 
+[2017-01-30 19:33:07,288] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:07,288] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-2]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,147] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 19:33:10,147] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 19:33:10,149] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-3]: Inside consume. 
+[2017-01-30 19:33:10,150] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-3]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,191] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,577] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,677] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [localhost-startStop-1]: Inside _consume_function 
+[2017-01-30 19:33:10,678] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [localhost-startStop-1]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 19:33:10,683] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,688] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-11-thread-4]: Inside consume. 
+[2017-01-30 19:33:10,688] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-11-thread-4]: inside_initialize_batch::false 
+[2017-01-30 19:33:10,832] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [localhost-startStop-1]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 19:33:10,968] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [localhost-startStop-1]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 19:33:11,105] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [localhost-startStop-1]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 19:33:11,762] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 19:33:11,762] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:11,856] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [localhost-startStop-1]: Inside consume. 
+[2017-01-30 19:33:11,857] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [localhost-startStop-1]: inside_initialize_batch::false 
+[2017-01-30 19:33:23,805] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [149] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Waiting for 10 seconds before invoking consumer shutdown, allowing consumer threads to complete. 
+[2017-01-30 19:33:33,868] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [149] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Waiting for 10 seconds before invoking consumer shutdown, allowing consumer threads to complete. 
+[2017-01-30 19:33:43,903] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducer] [208] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Stopping Kafka Producer... 
+[2017-01-30 19:33:59,228] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,234] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 19:33:59,234] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,235] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,239] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,320] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,321] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: writePolicy.generationPolicy:ERROR 
+[2017-01-30 19:33:59,321] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,321] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:33:59,322] WARN   [com.snapdeal.monetization.base.aerospike.config.impl.AerospikeConfigurationsImpl] [265] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Failed to parse property: ERROR 
+[2017-01-30 19:34:00,932] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Inside _consume_function 
+[2017-01-30 19:34:00,934] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Topic:::mtz_pa_supcvendor_updates 
+[2017-01-30 19:34:00,936] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Inside _consume_function 
+[2017-01-30 19:34:00,936] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Topic:::monetization_pricesimulator_categorychange 
+[2017-01-30 19:34:00,976] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-40-thread-2]: Inside consume. 
+[2017-01-30 19:34:00,979] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-40-thread-2]: inside_initialize_batch::false 
+[2017-01-30 19:34:00,978] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-40-thread-1]: Inside consume. 
+[2017-01-30 19:34:00,980] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-40-thread-1]: inside_initialize_batch::false 
+[2017-01-30 19:34:03,462] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [155] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Inside _consume_function 
+[2017-01-30 19:34:03,463] INFO   [com.snapdeal.monetization.base.queue.consumer.impl.MonetizationQueueConsumerImpl] [167] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Topic:::mtz_subcat_supc_process_event 
+[2017-01-30 19:34:03,464] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [pool-40-thread-3]: Inside consume. 
+[2017-01-30 19:34:03,464] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [pool-40-thread-3]: inside_initialize_batch::false 
+[2017-01-30 19:34:03,523] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumer] [71] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: inside_initialize_batch::false 
+[2017-01-30 19:34:29,179] ERROR  [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [141] [pool-40-thread-3]: Error processing consumer batch, reason: SubcatSupcProcessSubcat26Aug_L-CGHQ542-1485785043466-11dd0fd1 can't rebalance after 5 retries 
+[2017-01-30 19:34:29,660] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: zookeeper string 10.41.57.90:2181 
+[2017-01-30 19:34:29,790] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [69] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: broker IPs are 10.41.57.90:9092 
+[2017-01-30 19:34:29,866] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [87] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Initialized Kafka Producer with properties {retry.backoff.ms=500, bootstrap.servers=[10.41.57.90:9092], retries=5, client.id=mtz-sfcb, linger.ms=100, max.in.flight.requests.per.connection=1, timeout.ms=10000, compression.type=none, acks=all} 
+[2017-01-30 19:34:30,451] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Inside consume. 
+[2017-01-30 19:34:30,451] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: inside_initialize_batch::false 
+[2017-01-30 19:34:35,584] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [87] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: Inside consume. 
+[2017-01-30 19:34:35,584] INFO   [com.snapdeal.monetization.base.queue.consumer.kafka.KafkaConsumerV2] [55] [ContainerBackgroundProcessor[StandardEngine[Catalina]]]: inside_initialize_batch::false 
+[2017-01-31 02:15:45,308] INFO   [com.snapdeal.monetization.base.queue.producer.kafka.KafkaProducerV2] [66] [QuartzScheduler_Worker-1]: zookeeper string 10.41.57.90:2181 

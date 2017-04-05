@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package delhivery;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+/**
+ * @author rahul
+ *
+ */
+public class Sol1 {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String s = br.readLine();
+		String ss[] = s.split(" ");
+
+	}
+
+}

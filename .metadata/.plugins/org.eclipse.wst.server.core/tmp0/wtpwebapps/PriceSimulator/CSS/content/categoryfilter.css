@@ -1,0 +1,168 @@
+ul.categoryfilter *
+{
+	box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-ms-box-sizing: border-box !important;
+}
+ul.categoryfilter
+{
+	background: #eeeeee;
+	position: relative;
+	/* border-top-right-radius:30px; */
+	list-style: none;
+	width: 100%;
+	padding: 0px;
+	margin: 0;
+	/* margin-top: 15%; */
+	/* height: 300%; */
+	overflow: auto;
+}
+ul.categoryfilter li
+{
+	position: relative;
+}
+ul.categoryfilter > li
+{
+	/* margin-bottom: 1px; */
+	border-bottom: 1px solid #E8E8E8;
+}
+ul.categoryfilter > li:last-child
+{
+	margin-bottom: 0;
+}
+ul.categoryfilter > li span.name
+{
+	/* background: #f2f2f2 url(../images/more.png) no-repeat 6px; */
+	background: #eeeeee url(../images/more.png) no-repeat 6px;
+	display: inline-block;
+	width: 100%;
+	padding: 15px 30px 15px 40px;
+	color: black;
+}
+ul.categoryfilter > li span.name:hover
+{
+	background-color: #abb7b7;
+	/* border-radius:15px; */
+	cursor: pointer;
+}
+ul.categoryfilter > li span.notifications
+{
+	position: absolute;
+	top: 18px;
+	right: 6px;
+	display: inline-block;
+	float: right;
+	padding: 3px 0;
+	width: 22px;
+	height: 22px;
+	border: 2px solid #888;
+	color: #000000;
+	font-size: 9px;
+	text-align: center;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 11px;
+	/* box-sizing: border-box; */
+}
+ul.categoryfilter > li.open span.name
+{
+	background: #eeeeee url(../images/less.png) no-repeat 6px;
+	border-bottom: 1px solid #BDBDBD;
+}
+ul.categoryfilter > li > ul.open div.name
+{
+	background: #b4c4f3;
+	color: black;
+}
+ul.categoryfilter > li > ul.open div.name:hover
+{
+	background-color: #abb7b7;
+/* 	border-radius:15px; */
+	cursor: pointer;
+}
+ul.categoryfilter > li > ul.open > li div.name
+{
+	background: none;
+	padding: 12px 10px 12px 11px;
+	font-size: 11px;
+}
+ul.categoryfilter > li > ul.open > li div.name > span
+{
+	display: inline-block;
+	width: 80%;
+	background: none;
+	font-size: 11px;
+}
+ul.categoryfilter > li > ul.open > li div.name > label
+{
+	display: inline-block;
+	margin-left: 2%;
+	width: 15%;
+	border: none;
+	border-radius:15px;
+	background: none;
+}
+ul.categoryfilter > li > ul.open
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background-color: #eee;
+	color: #6f6f71;
+}
+ul.categoryfilter > li > ul.close 
+{
+	display: none;
+}
+ul.categoryfilter > li > ul.open > li
+{
+	border-bottom: 1px solid #E8E8E8;
+}
+ul.categoryfilter > li > ul.open > li:hover
+{
+	background-color: #abb7b7;
+	border-radius:15px;
+}
+label input[type="checkbox"]
+{ 
+	display: none;
+}
+label input[type="checkbox"].statusswitch + div
+{
+	display: inline-block;
+	vertical-align: middle;
+	width: 27px;
+	height: 14.2px;
+	border-radius: 999px;
+	background-color: #DD4B39;
+	-webkit-transition-duration: .4s;
+	-webkit-transition-property: background-color, box-shadow;
+	box-shadow: inset 0 0 0 0px rgba(0,0,0,0.4);
+}
+label input[type="checkbox"].statusswitch:checked + div
+{
+	background-color: #4ba2c6;
+}
+label input[type="checkbox"].statusswitch + div > div
+{
+	float: left;
+	width: 12px;
+	height: 12px;
+	border-radius: 15px;
+	background: #b4c4f3;
+	-webkit-transition-timing-function: cubic-bezier(.54,1.85,.5,1);
+	-webkit-transition-duration: .4s;
+	-webkit-transition-property: transform, background-color, box-shadow;
+	-moz-transition-timing-function: cubic-bezier(.54,1.85,.5,1);
+	-moz-transition-duration: 0.4s;
+	-moz-transition-property: transform, background-color;
+	pointer-events: none;
+	margin: 1px;
+}
+label input[type="checkbox"].statusswitch:checked + div > div
+{
+	-webkit-transform: translate3d(13px, 0, 0);
+	-moz-transform: translate3d(13px, 0, 0);
+	background-color: #b4c4f3;
+}

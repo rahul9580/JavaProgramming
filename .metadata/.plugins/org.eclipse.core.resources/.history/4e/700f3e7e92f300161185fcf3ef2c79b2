@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package ds.binarytree;
+
+/**
+ * @author rahul
+ *
+ */
+public class ThreadedNode {
+	private int		data;
+	private Node	left;
+	private Node	right;
+	private boolean	threaded;
+
+	public int getData() {
+		return data;
+	}
+
+	public void setData(int data) {
+		this.data = data;
+	}
+
+	public Node getLeft() {
+		return left;
+	}
+
+	public void setLeft(Node left) {
+		this.left = left;
+	}
+
+	public Node getRight() {
+		return right;
+	}
+
+	public void setRight(Node right) {
+		this.right = right;
+	}
+
+	public boolean isThreaded() {
+		return threaded;
+	}
+
+	public void setThreaded(boolean threaded) {
+		this.threaded = threaded;
+	}
+
+}

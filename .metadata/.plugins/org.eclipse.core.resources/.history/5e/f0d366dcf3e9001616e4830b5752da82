@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.snapdeal.monetization.common.aerospike;
+
+/**
+ * @author rahul
+ *
+ */
+public class AerospikeRetryOperationPojo {
+
+}

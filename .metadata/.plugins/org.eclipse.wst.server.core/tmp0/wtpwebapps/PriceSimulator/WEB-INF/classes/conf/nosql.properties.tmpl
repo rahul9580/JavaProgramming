@@ -1,0 +1,25 @@
+monetization.queue.kafka.zookeeper.host=<%= @monetization_queue_kafka_zookeeper_host %>
+monetization.queue.kafka.zookeeper.port=<%= @monetization_queue_kafka_zookeeper_port %>
+monetization.queue.kafka.zookeeper.connection.string=<%= @kafka_zookeeper_connection_string %>
+send.records.metadata.processor.pool.size=10
+
+## asynch producer task executor configuration
+monetization.queue.kafka.producer.corePool.size=5
+monetization.queue.kafka.producer.maxPool.size=5
+monetization.queue.kafka.producer.queueCapacity=9999999
+
+#client policy
+aerospike.hosts=<%= @aerospike_hosts %>
+aerospike.username=<%= @aerospike_username %>
+aerospike.password=<%= @aerospike_password %>
+aerospike.maxThreads=10
+
+#read policy
+readPolicy.maxRetries=2
+readPolicy.timeout=30000
+
+#write policy
+writePolicy.maxRetries=2
+writePolicy.timeout=40000
+monetization.queue.kafka10.zookeeper.connection.string=<%= @monetization_queue_kafka10_zookeeper_connection_string %>
+dp.realtime.event.kafka.connection.string=<%= @dp_realtime_event_kafka_connection_string %>

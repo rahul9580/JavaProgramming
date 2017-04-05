@@ -1,0 +1,16 @@
+127.0.0.1 - - [01/Feb/2017:13:34:29 +0530] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [01/Feb/2017:13:34:30 +0530] "GET /PriceSimulator/ HTTP/1.1" 404 981
+127.0.0.1 - - [01/Feb/2017:14:51:36 +0530] "GET / HTTP/1.1" 404 951
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/ HTTP/1.1" 200 2158
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/base/login.css HTTP/1.1" 200 5596
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/snapdeal.png HTTP/1.1" 200 2129
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/mailicon.png HTTP/1.1" 200 2980
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/signin.png HTTP/1.1" 200 3299
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/passicon.png HTTP/1.1" 200 2967
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/BG.jpg HTTP/1.1" 200 5565
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/wrapper_middle.png HTTP/1.1" 200 2917
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/input_left.png HTTP/1.1" 200 3036
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/input_middle.png HTTP/1.1" 200 2848
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/wrapper_bottom.png HTTP/1.1" 200 3167
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/input_right.png HTTP/1.1" 200 3028
+127.0.0.1 - - [01/Feb/2017:14:51:39 +0530] "GET /PriceSimulator/CSS/images/wrapper_top.png HTTP/1.1" 200 3158

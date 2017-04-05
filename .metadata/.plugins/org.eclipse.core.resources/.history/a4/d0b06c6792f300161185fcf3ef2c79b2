@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package ds.binarytree;
+
+/**
+ * @author rahul
+ *
+ */
+public class ThreadedNode {
+	private int		data;
+	private Node	left;
+	private Node	right;
+	private boolean	threaded;
+
+
+}

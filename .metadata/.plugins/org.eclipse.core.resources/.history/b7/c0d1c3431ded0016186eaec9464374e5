@@ -1,0 +1,244 @@
+package com.snapdeal.monetization.schedular.service.impl;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.snapdeal.monetization.base.retries.IRetryDao;
+import com.snapdeal.monetization.base.retries.RetryDaoImpl;
+import com.snapdeal.monetization.base.retries.builder.RetryEntityBuilder;
+import com.snapdeal.monetization.base.retries.model.RetryEntity;
+import com.snapdeal.monetization.common.enums.PSEventType;
+import com.snapdeal.monetization.constants.Constants;
+import com.snapdeal.monetization.event.enums.VsvpDataType;
+import com.snapdeal.monetization.event.handler.IpmsEventHandler;
+import com.snapdeal.monetization.event.handler.OpsRetryService;
+import com.snapdeal.monetization.schedular.service.IIpmsService;
+import com.snapdeal.monetization.schedular.service.IOpsService;
+import com.snapdeal.monetization.scheduler.utils.SchedulerUtils;
+import com.snapdeal.monetization.scheduler.utils.VsvpEnableUtils;
+import com.snapdeal.ops.base.api.calculateFinancials.FinancialFactorsSet;
+import com.snapdeal.ops.base.api.calculateFinancials.FinancialsSRO;
+import com.snapdeal.ops.base.api.calculateFinancials.RecalculateFinancialsRequest;
+import com.snapdeal.ops.base.api.calculateFinancials.RecalculateFinancialsResponse;
+import com.snapdeal.ops.base.api.calculateFinancials.RecalculateFinancialsSRO;
+import com.snapdeal.ops.base.api.calculateFinancials.RecalculateResponseContextSRO;
+import com.snapdeal.ops.base.api.calculateFinancials.RequestContextSRO;
+import com.snapdeal.ops.base.api.model.StoreFrontCode;
+import com.snapdeal.ops.client.service.IOPSClientService;
+import com.snapdeal.pojo.IPMSDataOutput;
+import com.snapdeal.pojo.OpsData;
+import com.snapdeal.pojo.OpsDataInput;
+import com.snapdeal.spring.dao.FetchDataDao;
+import com.snapdeal.spring.dao.IOPSDao;
+
+@Service
+public class OpsServiceImpl implements IOpsService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(OpsServiceImpl.class);
+	private static final int maxRetry = 5;
+	private static final int interval = 300;
+
+	@Autowired
+	private IOPSDao opsDao;
+	@Autowired
+	private FetchDataDao fetchDataDao;
+	@Autowired
+	private OpsRetryService opsRetryService;
+	@Autowired
+	private IOPSClientService opsClientService;
+	@Autowired
+	private IIpmsService ipmsService;
+	@Value("${mtz.ops.api.url}")
+	private String webServiceBaseURL;
+	private String instanceId = SchedulerUtils.getInstanceId();
+	private AtomicInteger requestId = new AtomicInteger(0);
+
+	@Autowired
+	@Qualifier("ipmsEventHandler")
+	private IpmsEventHandler ipmsEventHandler;
+	
+	@Autowired
+	private VsvpEnableUtils vsvpEnableUtil;
+	
+	@Autowired
+	private IRetryDao			retryDao; 
+
+	@PostConstruct
+	public void init() {
+		opsClientService.setWebServiceBaseURL(webServiceBaseURL);
+		opsRetryService.registerService(Constants.SCHEDULER_SOURCE + instanceId, Constants.OPS_DESTINATION,
+				OpsDataInput.class);
+	}
+
+	@Override
+	public int updateVsvpCharges(OpsData opsData) {
+		int rowChanged = opsDao.updateDbVsvpData(opsData);
+		opsDao.updateAeroVsvpData(opsData, false);
+		return rowChanged;
+	}
+
+	@Override
+	public void saveVsvpData(OpsData opsData) {
+		opsDao.getAndSetBrandSubcat(opsData);
+		opsDao.updateAeroVsvpData(opsData, true);
+		opsDao.saveVsvpData(opsData);
+	}
+
+	@Override
+	public boolean fetchOpsData(final String supc, final String seller, final int id) {
+		int successId = 0;
+		int failId = 0;
+		IPMSDataOutput vsvpDataInput = new IPMSDataOutput();
+		vsvpDataInput.setSupc(supc);
+		vsvpDataInput.setSellerCode(seller);
+		if ((id & VsvpDataType.COCOFS.getId()) == VsvpDataType.COCOFS.getId()) {
+			LOGGER.info("Fetching FM Details");
+			if (fetchDataDao.fetchFMdetails(vsvpDataInput)) {
+				LOGGER.info("Fetching FM Successfull");
+				successId ^= (id & VsvpDataType.COCOFS.getId());
+			} else {
+				LOGGER.info("Fetching FM Unsuccessfull");
+				successId = successId & (~(id & VsvpDataType.COCOFS.getId()));
+			}
+		}
+		if ((id & VsvpDataType.OPS.getId()) == VsvpDataType.OPS.getId()) {
+			LOGGER.info("Fetching OPS details");
+			if (fetchOpsData(vsvpDataInput)) {
+				LOGGER.info("Fetching OPS details successfull");
+				successId ^= (VsvpDataType.OPS.getId());
+			} else {
+				LOGGER.info("Fetching OPS details Unsuccessfull");
+				successId &= (~VsvpDataType.OPS.getId());
+			}
+		}
+		if ((id & VsvpDataType.CAMS.getId()) == VsvpDataType.CAMS.getId()) {
+			if (ipmsService.fetchSubcategoryIdAndGetStatus(vsvpDataInput)) {
+				successId ^= (VsvpDataType.CAMS.getId());
+			} else {
+				successId &= (~VsvpDataType.CAMS.getId());
+			}
+		}
+		if (successId > 0)
+		{
+			boolean updateStatus = updateVsvpFMandCharges(vsvpDataInput, successId);
+			if (!updateStatus)
+				successId = 0;
+		}
+		failId = ((VsvpDataType.COCOFS.getId() ^ VsvpDataType.OPS.getId() ^ VsvpDataType.CAMS.getId()) & id)^ successId;
+		if (failId > 0 && failId != id)
+		{
+			saveOpsRetryEvent(supc, seller, failId);
+			return Boolean.TRUE;
+		}
+		else if(failId == 0)
+		{
+			Set<String> vendorSupcToken = new HashSet<String>();
+			vendorSupcToken.add(supc  + ":" + seller);
+			vsvpEnableUtil.handleEvent(vendorSupcToken, PSEventType.FM_UPDATE ,Boolean.FALSE,null);
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+
+	@Override
+	public void saveOpsRetryEvent(String supc, String seller, Integer failId) {
+		OpsDataInput input = new OpsDataInput(supc, seller, failId);
+		LOGGER.info("saving ops event " + input);
+		RetryEntityBuilder builder = new RetryEntityBuilder(input, maxRetry, interval);
+		opsRetryService.process(builder.build());
+	}
+
+	private boolean updateVsvpFMandCharges(IPMSDataOutput result, int successId) {
+		try {
+			LOGGER.info("updating vsvp in DB for supc::vendor :: " + result.getSupc() + "::" + result.getSellerCode()
+					+ ":: " + result);
+			opsDao.updateDbFailedVsvpData(result);
+			opsDao.updataAeroVsvpData(result);
+			Set<String> vendorSupcTokenList = new HashSet<>();
+			vendorSupcTokenList.add(result.getSupc() + ":" + result.getSellerCode());
+			if ((successId & VsvpDataType.COCOFS.getId()) > 0)
+			{
+				ipmsEventHandler.addBuyButtonEvent(result.getSupc(), result.getSellerCode());
+			}
+			return Boolean.TRUE;
+		} catch (Exception e) {
+			LOGGER.error("Exception Occured: " + ExceptionUtils.getFullStackTrace(e));
+			return Boolean.FALSE;
+		}
+	}
+
+	private boolean isValidOpsData(OpsData opsData) {
+		if (opsData == null) {
+			return false;
+		}
+		if (null == opsData.getMarginType() || null == opsData.getMargin() || opsData.getMargin().doubleValue() < 0) {
+			return false;
+		}
+		if (null == opsData.getOverHead() || opsData.getOverHead().doubleValue() < 0) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean fetchOpsData(IPMSDataOutput ipmsData) {
+		try {
+			RecalculateFinancialsRequest request = new RecalculateFinancialsRequest();
+			Set<RequestContextSRO> requests = new HashSet<>();
+			request.setRequests(requests);
+			FinancialFactorsSet financialFactorsSet = new FinancialFactorsSet();
+			RequestContextSRO contextSRO = new RequestContextSRO(requestId.getAndIncrement(), financialFactorsSet);
+			FinancialsSRO availableFinancialFactors = new FinancialsSRO();
+			availableFinancialFactors.setSupc(ipmsData.getSupc());
+			availableFinancialFactors.setSellerCode(ipmsData.getSellerCode());
+			availableFinancialFactors.setStoreFront(StoreFrontCode.SNAPDEAL.getName());
+
+			contextSRO.setAvailableFinancialFactors(availableFinancialFactors);
+			requests.add(contextSRO);
+
+			RecalculateFinancialsResponse response = opsClientService.calculateFinancialsForTP(request);
+
+			if (response == null || response.getResponseContexts() == null) {
+				return Boolean.FALSE;
+			}
+			Iterator<RecalculateResponseContextSRO> it = response.getResponseContexts().iterator();
+			if (it.hasNext()) {
+				RecalculateResponseContextSRO contextSRO2 = it.next();
+				if (!contextSRO2.isSuccessful()) {
+					LOGGER.warn("Unable to fetch ops data, Message: " + contextSRO2.getMessage());
+					RetryEntity entity = new RetryEntity();
+					entity.setRequest(ipmsData);
+					entity.setFailCount(rs.getInt("fail_count")+1);
+					entity.setMaxRetryCount(rs.getInt("max_retry_count"));
+					retryDao.save(entity, source, destination, klass);
+				}
+				RecalculateFinancialsSRO financialsSRO = contextSRO2.getFinancials();
+				if (financialsSRO != null) {
+					LOGGER.info("ops response is " + financialsSRO);
+					OpsData opsData = SchedulerUtils.setOpsData(financialsSRO);
+					if (isValidOpsData(opsData)) {
+						ipmsData.setMargin(opsData.getMargin());
+						ipmsData.setOverHead(opsData.getOverHead());
+						ipmsData.setMarginType(opsData.getMarginType());
+						return Boolean.TRUE;
+					}
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error in getting ops data ", e);
+		}
+		return Boolean.FALSE;
+	}
+
+}

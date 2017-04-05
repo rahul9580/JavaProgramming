@@ -1,0 +1,3 @@
+SUPC,Vendor,Shipping Charge,Start Time(DD-MM-YYYY HH:MM),End Time(DD-MM-YYYY HH:MM),NMPU,Action
+855074,0cac8d,30,18-04-2016 05:30,21-06-2017 00:00,Y,ADD
+855074,all,,,,,DELETE

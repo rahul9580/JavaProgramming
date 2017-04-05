@@ -1,0 +1,52 @@
+/**
+ * 
+ */
+package com.snapdeal.monetization.common.aerospike;
+
+import java.io.Serializable;
+
+/**
+ * @author rahul
+ *
+ */
+public class AerospikeRetryOperationPojo  implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3397773699855666318L;
+	
+	private String key;
+	private String set;
+	private String namespace;
+	private String operation;
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public String getSet() {
+		return set;
+	}
+	public void setSet(String set) {
+		this.set = set;
+	}
+	public String getNamespace() {
+		return namespace;
+	}
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
+	public String getOperation() {
+		return operation;
+	}
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+	@Override
+	public String toString() {
+		return "AerospikeRetryOperationPojo [key=" + key + ", set=" + set + ", namespace=" + namespace + ", operation=" + operation + "]";
+	}
+	
+}

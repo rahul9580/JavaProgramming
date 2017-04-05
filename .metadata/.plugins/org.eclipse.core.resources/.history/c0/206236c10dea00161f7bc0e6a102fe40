@@ -1,0 +1,550 @@
+package com.snapdeal.monetization.base.aerospike.operation.impl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.FutureTask;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+
+import com.aerospike.client.AerospikeException;
+import com.aerospike.client.Bin;
+import com.aerospike.client.Key;
+import com.aerospike.client.Record;
+import com.aerospike.client.ScanCallback;
+import com.aerospike.client.Value;
+import com.aerospike.client.policy.WritePolicy;
+import com.aerospike.client.query.Filter;
+import com.aerospike.client.query.IndexCollectionType;
+import com.aerospike.client.query.RecordSet;
+import com.aerospike.client.query.Statement;
+import com.snapdeal.monetization.base.aerospike.client.MonetizationClient;
+import com.snapdeal.monetization.base.aerospike.modal.AerospikeResponseWrapper;
+import com.snapdeal.monetization.base.aerospike.modal.FilterType;
+import com.snapdeal.monetization.base.aerospike.modal.ReadTask;
+import com.snapdeal.monetization.base.aerospike.modal.WriteTask;
+import com.snapdeal.monetization.base.aerospike.operation.Operation;
+import com.snapdeal.monetization.base.aerospike.retry.AerospikeRetryEventPojo;
+import com.snapdeal.monetization.base.aerospike.retry.AerospikeRetryEventProducer;
+import com.snapdeal.monetization.base.common.serializer.Serializer;
+import com.snapdeal.monetization.base.common.serializer.SerializerType;
+
+/**
+ * @author sandeep
+ * 
+ *         make sure that bin name is <= 14 characters length.
+ *
+ */
+@Lazy
+@Service("operation")
+public class OperationImpl implements Operation {
+	private static final Logger	LOGGER		= LoggerFactory.getLogger(OperationImpl.class);
+
+	private static final String	DEFAULT_BIN	= "bin";
+
+
+	@Value("${aerospike.max.retry.count}")
+	private String						maxRetryCount;
+
+	@Autowired
+	private MonetizationClient	client;
+	@Autowired
+	@Qualifier("protoStuffSerializer")
+	private Serializer			protoStuffSerializer;
+	@Autowired
+	@Qualifier("fastSerializer")
+	private Serializer			fastSerializer;
+	@Autowired
+	@Qualifier("gsonSerializer")
+	private Serializer			gsonSerializer;
+	@Autowired
+	private AerospikeRetryEventProducer	aerospikeRetryEventProducer;
+
+	@Override
+	public void putRecord(String namespace, String set, Object primaryKeyName, Map<String, Object> dataMap) throws AerospikeException {
+		try {
+			if (!isValid(namespace, set, primaryKeyName, dataMap)) {
+				return;
+			}
+			Key key = createKey(namespace, set, primaryKeyName);
+			Bin[] bins = new Bin[dataMap.size()];
+			int index = 0;
+			for (Map.Entry<String, Object> data : dataMap.entrySet()) {
+				Object dataValue = data.getValue();
+				Bin bin = null;
+				if (dataValue instanceof Double || dataValue instanceof Float) {
+					bin = new Bin(data.getKey(), String.valueOf(dataValue));
+				} else {
+					bin = new Bin(data.getKey(), dataValue);
+				}
+				bins[index++] = bin;
+			}
+			client.getAerospikeClient().put(client.getDefaultWritePolicy(), key, bins);
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public String putRecords(String namespace, String set, List<Object> primaryKeys, List<Map<String, Object>> results) throws AerospikeException {
+		try {
+			if (primaryKeys == null || primaryKeys.isEmpty() || results == null || results.isEmpty()) {
+				throw new RuntimeException("primaryKeys and/or results can not be null");
+			}
+			if (primaryKeys.size() != results.size()) {
+				throw new RuntimeException("number of record and number of primary keys mismatched");
+			}
+			ExecutorService threadPool = client.getClientPolicy().threadPool;
+			List<FutureTask<String>> futures = new ArrayList<FutureTask<String>>();
+			for (int index = 0; index < primaryKeys.size(); ++index) {
+				Object primaryKey = null;
+				primaryKey = primaryKeys.get(index);
+				Map<String, Object> data = results.get(index);
+				Key key = createKey(namespace, set, primaryKey);
+				WriteTask task = new WriteTask(key, data, client);
+				FutureTask<String> future = new FutureTask<String>(task);
+				futures.add(future);
+				threadPool.execute(future);
+			}
+			StringBuilder builder = new StringBuilder("Failed to put supc-seller [");
+			for (FutureTask<String> future : futures) {
+				try {
+					builder.append(future.get());
+				} catch (InterruptedException | ExecutionException e) {
+					LOGGER.error("Exception ", e);
+				}
+			}
+			builder.append("]");
+			return builder.toString();
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+
+	}
+
+	private boolean isValid(String namespace, String set, Object primaryKeyName, Map<String, Object> dataMap) {
+		if (namespace == null || namespace.isEmpty()) {
+			LOGGER.info("namespace is required field");
+			return false;
+		} else if (set == null || set.isEmpty()) {
+			LOGGER.info("set is required field");
+			return false;
+		} else if (primaryKeyName == null || primaryKeyName.toString().isEmpty()) {
+			LOGGER.info("primaryKeyName is required field");
+			return false;
+		} else if (dataMap == null || dataMap.isEmpty()) {
+			LOGGER.info("data is required field");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private Key createKey(String namespace, String set, Object primaryKeyName) {
+		return new Key(namespace, set, Value.get(primaryKeyName));
+	}
+
+	@Override
+	public boolean deleteRecord(String namespace, String set, Object primaryKeyName) throws AerospikeException {
+		try {
+			Key key = createKey(namespace, set, primaryKeyName);
+			return client.getAerospikeClient().delete(client.getDefaultWritePolicy(), key);
+		} catch (Exception ex) {
+			AerospikeRetryEventPojo aerospikeRetryOperationPojo = new AerospikeRetryEventPojo();
+			aerospikeRetryOperationPojo.setKey(primaryKeyName);
+			aerospikeRetryOperationPojo.setSet(set);
+			aerospikeRetryOperationPojo.setNamespace(namespace);
+			aerospikeRetryOperationPojo.setOperation("DELETE");
+			aerospikeRetryEventProducer.sendEvent(aerospikeRetryOperationPojo);
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+	
+	@Override
+	public Map<String, Object> getRecord(String namespace, String set, Object primaryKeyName) throws AerospikeException {
+		try {
+			Key key = createKey(namespace, set, primaryKeyName);
+			Record record = client.getAerospikeClient().get(client.getDefaultReadPolicy(), key);
+			return (record == null ? null : record.bins);
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+			
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> getBatchRecord(String namespace, String set, List<Object> primaryKeys) throws AerospikeException {
+		try {
+			int size = primaryKeys.size();
+			Key[] keys = new Key[size];
+			for (int index = 0; index < size; ++index) {
+				Object pkey = primaryKeys.get(index);
+				keys[index] = createKey(namespace, set, pkey);
+			}
+			Record[] records = client.getAerospikeClient().get(client.getDefaultBatchPolicy(), keys);
+			if (records == null || records.length <= 0) {
+				return null;
+			}
+			List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+			for (Record rec : records) {
+
+				if(null !=rec) {
+					results.add(rec.bins);
+				}
+			}
+			return results;
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public List<Map<String, Object>> getRecordBasedOnClause(String namespace, String set, FilterType filterType, String binName, Long begin, Long end,
+			IndexCollectionType itype, Object value) throws AerospikeException {
+		try {
+			if (!isValidData(namespace, set, filterType, binName, begin, end, itype)) {
+				throw new AerospikeException("missing required fields");
+			}
+			Filter filter = createFilter(filterType, binName, begin, end, itype, value);
+			Statement statement = new Statement();
+			statement.setNamespace(namespace);
+			statement.setSetName(set);
+			statement.setFilters(filter);
+			RecordSet rs = client.getAerospikeClient().query(client.getDefaultQueryPolicy(), statement);
+			List<Map<String, Object>> results = new ArrayList<>();
+			if (rs != null) {
+				try {
+					while (rs.next()) {
+						Record record = rs.getRecord();
+						results.add(record.bins);
+					}
+				} finally {
+					rs.close();
+				}
+			}
+			return results;
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+
+	}
+
+	@Override
+	public List<Map<String, Object>> getRecordBasedOnClauseAndCollectionValues(String namespace, String set, FilterType filterType, String binName,
+			Long begin, Long end, IndexCollectionType itype, Collection<?> values) throws AerospikeException {
+		try {
+			if (!isValidData(namespace, set, filterType, binName, begin, end, itype)) {
+				throw new AerospikeException("missing required fields");
+			}
+			if (filterType == FilterType.RANGE) {
+				return getRecordBasedOnClause(namespace, set, filterType, binName, begin, end, itype, new Object());
+			}
+
+			ExecutorService threadPool = client.getClientPolicy().threadPool;
+			List<FutureTask<RecordSet>> futures = new ArrayList<FutureTask<RecordSet>>();
+			Iterator<?> iterator = values.iterator();
+			List<Map<String, Object>> results = new ArrayList<>();
+			while (iterator.hasNext()) {
+				Object value = iterator.next();
+				Filter filter = createFilter(filterType, binName, begin, end, itype, value);
+				Statement statement = new Statement();
+				statement.setNamespace(namespace);
+				statement.setSetName(set);
+				statement.setFilters(filter);
+				ReadTask task = new ReadTask(statement, client);
+				FutureTask<RecordSet> future = new FutureTask<RecordSet>(task);
+				futures.add(future);
+				threadPool.execute(future);
+			}
+			for (FutureTask<RecordSet> future : futures) {
+				RecordSet rs = future.get();
+				if (rs != null) {
+					try {
+						while (rs.next()) {
+							Record record = rs.getRecord();
+							results.add(record.bins);
+						}
+					} finally {
+						rs.close();
+					}
+				}
+			}
+			return results;
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	private Filter createFilter(FilterType filterType, String binName, Long begin, Long end, IndexCollectionType itype, Object value) {
+		switch (filterType) {
+		case CONTAINS:
+			if (value instanceof Long) {
+				return Filter.contains(binName, itype, (Long) value);
+			} else if (value instanceof String) {
+				return Filter.contains(binName, itype, (String) value);
+			} else {
+				throw new RuntimeException("collection datatype not supported");
+			}
+		case RANGE:
+			if (itype == null) {
+				return Filter.range(binName, begin, end);
+			} else {
+				return Filter.range(binName, itype, begin, end);
+			}
+		case EQUAL:
+			if (value instanceof Long) {
+				return Filter.equal(binName, (Long) value);
+			} else if (value instanceof String) {
+				return Filter.equal(binName, (String) value);
+			} else {
+				throw new RuntimeException("collection datatype not supported");
+			}
+		}
+		return null;
+	}
+
+	private boolean isValidData(String namespace, String set, FilterType filterType, String binName, Long begin, Long end,
+			IndexCollectionType itype) {
+		if (namespace == null || set == null || binName == null || filterType == null) {
+			return false;
+		}
+		switch (filterType) {
+		case CONTAINS:
+			if (itype == null) {
+				return false;
+			}
+		case RANGE:
+			if (begin == null || end == null || begin.longValue() > end.longValue()) {
+				return false;
+			}
+		case EQUAL:
+			return true;
+		default:
+			return false;
+		}
+	}
+
+	@Override
+	public void putValue(String namespace, String set, String primaryKey, Object value, SerializerType serializerType, int expiration)
+			throws AerospikeException {
+		try {
+			if (serializerType == null) {
+				serializerType = SerializerType.PROTOSTUFF_SERIALIZER;
+			}
+			Bin bin = null;
+			switch (serializerType) {
+			case FAST_SERIALIZER:
+				byte[] fstData = fastSerializer.serialize(value.getClass(), value);
+				bin = new Bin(DEFAULT_BIN, fstData);
+				break;
+			case GSON_SERIALIZER:
+				String jsonData = gsonSerializer.doSerialize(value);
+				bin = new Bin(DEFAULT_BIN, jsonData);
+				break;
+			case PROTOSTUFF_SERIALIZER:
+			default:
+				byte[] pdata = protoStuffSerializer.serialize(value.getClass(), value);
+				bin = new Bin(DEFAULT_BIN, pdata);
+				break;
+			}
+			Key key = new Key(namespace, set, primaryKey);
+			WritePolicy writePolicy = new WritePolicy(client.getDefaultWritePolicy());
+			writePolicy.expiration = expiration;
+			client.getAerospikeClient().put(writePolicy, key, bin);
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public Object getValue(String namespace, String set, String primaryKey, Class<? extends Object> classType, SerializerType serializerType)
+			throws AerospikeException {
+		try {
+			if (serializerType == null) {
+				serializerType = SerializerType.PROTOSTUFF_SERIALIZER;
+			}
+			Key key = new Key(namespace, set, primaryKey);
+			Record record = client.getAerospikeClient().get(client.getDefaultReadPolicy(), key);
+			if (record != null) {
+				switch (serializerType) {
+				case FAST_SERIALIZER:
+					byte[] bytes = (byte[]) record.getValue(DEFAULT_BIN);
+					return fastSerializer.deserialize(classType, bytes);
+				case GSON_SERIALIZER:
+					String data = (String) record.getValue(DEFAULT_BIN);
+					return gsonSerializer.doDeserialize(classType, data);
+				case PROTOSTUFF_SERIALIZER:
+				default:
+					byte[] pbytes = (byte[]) record.getValue(DEFAULT_BIN);
+					return protoStuffSerializer.deserialize(classType, pbytes);
+				}
+			}
+			return null;
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public <T> T getObject(String namespace, String set, String primaryKey, Class<T> classType, SerializerType serializerType)
+			throws AerospikeException {
+		try {
+			if (serializerType == null) {
+				serializerType = SerializerType.PROTOSTUFF_SERIALIZER;
+			}
+			Key key = new Key(namespace, set, primaryKey);
+			Record record = client.getAerospikeClient().get(client.getDefaultReadPolicy(), key);
+			return deserializeData(classType, serializerType, record);
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	private <T> T deserializeData(Class<T> classType, SerializerType serializerType, Record record) {
+		if (record != null) {
+			switch (serializerType) {
+			case FAST_SERIALIZER:
+				byte[] bytes = (byte[]) record.getValue(DEFAULT_BIN);
+				return fastSerializer.deserializeObject(classType, bytes);
+			case GSON_SERIALIZER:
+				String data = (String) record.getValue(DEFAULT_BIN);
+				return gsonSerializer.deserializeObject(classType, data.getBytes());
+			case PROTOSTUFF_SERIALIZER:
+			default:
+				byte[] pbytes = (byte[]) record.getValue(DEFAULT_BIN);
+				return protoStuffSerializer.deserializeObject(classType, pbytes);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Object getValue(String namespace, String set, String primaryKey, Class<? extends Object> classType) throws AerospikeException {
+		return getValue(namespace, set, primaryKey, classType, SerializerType.PROTOSTUFF_SERIALIZER);
+	}
+
+	@Override
+	public void putValue(String namespace, String set, String primaryKey, Object value, int expiration) throws AerospikeException {
+		putValue(namespace, set, primaryKey, value, SerializerType.PROTOSTUFF_SERIALIZER, expiration);
+	}
+
+	@Override
+	public <T> List<T> getAllCacheRecords(String namespace, String set, SerializerType serializerType, final Class<T> klass) {
+		if (serializerType == null) {
+			serializerType = SerializerType.PROTOSTUFF_SERIALIZER;
+		}
+		final SerializerType serializer = serializerType;
+		final List<T> list = new ArrayList<>();
+		client.getAerospikeClient().scanAll(null, namespace, set, new ScanCallback() {
+
+			@Override
+			public void scanCallback(Key key, Record record) throws AerospikeException {
+				list.add(deserializeData(klass, serializer, record));
+			}
+
+		});
+		return list;
+	}
+
+	public List<AerospikeResponseWrapper> getAllPersistenceRecords(String namespace, String set) {
+		final List<AerospikeResponseWrapper> responses = new ArrayList<>();
+		client.getAerospikeClient().scanAll(null, namespace, set, new ScanCallback() {
+
+			@Override
+			public void scanCallback(Key key, Record record) throws AerospikeException {
+				responses.add(new AerospikeResponseWrapper(record.bins));
+			}
+
+		});
+		return responses;
+	}
+	
+	@Override
+	public void putRecordWithExpiry(String namespace, String set, Object primaryKeyName, Map<String, Object> dataMap, int expiry) throws AerospikeException {
+		try {
+			if (!isValid(namespace, set, primaryKeyName, dataMap)) {
+				return;
+			}
+			Key key = createKey(namespace, set, primaryKeyName);
+			Bin[] bins = new Bin[dataMap.size()];
+			int index = 0;
+			for (Map.Entry<String, Object> data : dataMap.entrySet()) {
+				Object dataValue = data.getValue();
+				Bin bin = null;
+				if (dataValue instanceof Double || dataValue instanceof Float) {
+					bin = new Bin(data.getKey(), String.valueOf(dataValue));
+				} else {
+					bin = new Bin(data.getKey(), dataValue);
+				}
+				bins[index++] = bin;
+			}
+			WritePolicy writePolicy = new WritePolicy(client.getDefaultWritePolicy());
+			writePolicy.expiration = expiry;
+			client.getAerospikeClient().put(writePolicy, key, bins);
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public String putRecordsWithExpiry(String namespace, String set, List<Object> primaryKeys, List<Map<String, Object>> results, int expiry) throws AerospikeException {
+		try {
+			if (primaryKeys == null || primaryKeys.isEmpty() || results == null || results.isEmpty()) {
+				throw new RuntimeException("primaryKeys and/or results can not be null");
+			}
+			if (primaryKeys.size() != results.size()) {
+				throw new RuntimeException("number of record and number of primary keys mismatched");
+			}
+			WritePolicy writePolicy = new WritePolicy(client.getDefaultWritePolicy());
+			writePolicy.expiration = expiry;
+			ExecutorService threadPool = client.getClientPolicy().threadPool;
+			List<FutureTask<String>> futures = new ArrayList<FutureTask<String>>();
+			for (int index = 0; index < primaryKeys.size(); ++index) {
+				Object primaryKey = null;
+				primaryKey = primaryKeys.get(index);
+				Map<String, Object> data = results.get(index);
+				Key key = createKey(namespace, set, primaryKey);
+				WriteTask task = new WriteTask(key, data, client, writePolicy);
+				FutureTask<String> future = new FutureTask<String>(task);
+				futures.add(future);
+				threadPool.execute(future);
+			}
+			StringBuilder builder = new StringBuilder("Failed to put supc-seller [");
+			for (FutureTask<String> future : futures) {
+				try {
+					builder.append(future.get());
+				} catch (InterruptedException | ExecutionException e) {
+					LOGGER.error("Exception ", e);
+				}
+			}
+			builder.append("]");
+			return builder.toString();
+		} catch (Exception ex) {
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+
+	}
+
+	@Override
+	public boolean deleteRecord(AerospikeRetryEventPojo aerospikeRetryOperationPojo) throws AerospikeException {
+		try {
+			Key key = createKey(aerospikeRetryOperationPojo.getNamespace(), aerospikeRetryOperationPojo.getSet(),
+					aerospikeRetryOperationPojo.getKey());
+			return client.getAerospikeClient().delete(client.getDefaultWritePolicy(), key);
+		} catch (Exception ex) {
+			if (aerospikeRetryOperationPojo.getAttempt() < 3)
+				aerospikeRetryOperationPojo.setAttempt((short) (aerospikeRetryOperationPojo.getAttempt() + 1));
+			aerospikeRetryEventProducer.sendEvent(aerospikeRetryOperationPojo);
+			throw new AerospikeException(ex.getMessage(), ex);
+		}
+	}
+}

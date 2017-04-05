@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.snapdeal.monetization.common.aerospike;
+
+import java.io.Serializable;
+
+/**
+ * @author rahul
+ *
+ */
+public class AerospikeRetryOperationPojo  implements Serializable {
+
+}

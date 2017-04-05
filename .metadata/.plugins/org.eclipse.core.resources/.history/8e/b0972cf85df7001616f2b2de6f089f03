@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package geeksforgeeks.dp;
+
+/**
+ * @author rahul
+ *
+ */
+public class LIS {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int[] arr = {10, 22, 9, 33, 21, 50, 41, 60, 80};
+		int[] mem = new int[arr.length];
+		for(int i = 0; i < 0; i++) {
+			int max = mem[0];
+			for(int j = 0; j < i; i++) {
+				if(arr[j] < arr[i] && mem[j] > max) {
+					max = mem[j];
+				}
+			}
+			if(mem[i] == 0) {
+				mem[i] = 1;
+			}
+		}
+	}
+
+}

@@ -1,0 +1,260 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet"
+	href="/PriceSimulator/CSS/utility/bootstrap.min.css" media="screen" />
+<link type="text/css" rel="stylesheet"
+	href="/PriceSimulator/CSS/utility/bootstrap-datetimepicker.min.css"
+	media="screen" />
+<link type="text/css" rel="stylesheet"
+	href="/PriceSimulator/CSS/utility/buttons.css" media="screen" />
+<link type="text/css" rel="stylesheet"
+	href="/PriceSimulator/CSS/utility/loader.css" media="screen" />
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600'
+	rel='stylesheet' type='text/css'>
+<link href="/PriceSimulator/CSS/content/bulkUpload/style.css"
+	type="text/css" rel="stylesheet">
+<script type="text/javascript"
+	src="/PriceSimulator/JS/utility/jquery-1.12.0.min.js"></script>
+<script type="text/javascript"
+	src="/PriceSimulator/JS/utility/loader.js"></script>
+<script type="text/javascript"
+	src="/PriceSimulator/JS/utility/bootstrap.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/lang/en-gb.js"></script>
+<script type="text/javascript"
+	src="/PriceSimulator/JS/utility/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/PriceSimulator/JS/budget/createBudgetRule.js"></script>
+</head>
+
+<body>
+
+	<div class="well well-sm">
+		<table class="table" style="width: 96%; margin: 10px 2%" id="budgetTable">
+			<tbody>
+				<tr>
+				<br><br>
+					<td><form action="" method="post">
+							<input type="radio" id="SV"  value="SV" name="ruleType" checked="checked" onclick="showSupcBlock()" /> SV Rule 
+							<input type="radio" id="VB" value="VB" name="ruleType" onclick="showBrandBlock()" /> VB Rule
+						</form></td>
+						
+				<td><input type="text" class="hidden ruleType" name="ruleType" value="SV" /></td>
+				</tr>
+				
+				<tr>
+					<td class="ruleId"><input
+						type="hidden" name="ruleId" id="ruleId"
+						class="ruleId" /></td>
+				</tr>
+				<tr>
+					<td class="name"><font color="red">*</font> <label>Name</label><input
+						type="text" name="name" id="name"
+						class="name form-control pull-right" 
+						onkeypress="validateString(event)"/></td>
+						
+					<td class="pro"><font color="red">*</font> <label>PRO/RO</label><input
+						type="text" name="pro" id="pro"
+						class="pro form-control pull-right" 
+						onkeypress="validateString(event)"/></td>
+				</tr>
+
+				<tr>
+						<td class="supc" id="sv" style="display: block"><font color="red">*</font> <label>SUPC</label><input
+							type="text" name="supc" id="supc"
+							class="supc form-control pull-right" 
+							onkeypress="validateNoSpecialCharacter(event)"/></td>
+							
+						<td class="brand" id="vb" style="display: none"><font color="red">*</font> <label>Brand Id</label><input
+							type="text" name="brand" id="brand"
+							class="brand form-control pull-right" 
+							onkeypress="validateInt(event)" /></td>
+												
+					<td class="vendor"><font color="red">*</font> <label>Vendor List seperated by ,</label><input
+						type="text" name="vendor" id="vendor"
+						class="vendor form-control pull-right" 
+						onkeypress="validateNoSpecialCharacterButComma(event)"/></td>
+				</tr>
+
+				<tr>
+					<td class="budget"><font color="red">*</font> <label>Budget</label><input
+						type="number" name="budget" id="budget"
+						class="budget form-control pull-right" step="1000"
+						onkeypress="validateInt(event)" /></td>
+					<td class="saleTarget"><font color="red">*</font> <label>Sale Target</label><input
+						type="number" name="saleTarget" id="saleTarget"
+						class="saleTarget form-control pull-right" step="1000"
+						onkeypress="validateInt(event)" /></td>
+					<td class="gsvTarget"><font color="red">*</font> <label>GSV Target</label><input
+						type="number" name="gsvTarget" id="gsvTarget"
+						class="gsvTarget form-control pull-right" step="1000"
+						onkeypress="validateInt(event)" /></td>
+				</tr>
+
+				<tr>
+					<td class="startTime"><font color="red">*</font> <label>Start
+							Time</label>
+						<div class='input-group date datetimepicker startTime pull-right'
+							style="width: 57%">
+							<input type='text' id="startTime" class="form-control startTime"
+								name="startTime" onkeypress="return false;" /> <span
+								class="input-group-addon"> <span
+								class="glyphicon glyphicon-calendar"> </span>
+							</span>
+						</div></td>
+					<td class="endTime"><font color="red">*</font> <label>End
+							Time</label>
+						<div class='input-group date datetimepicker endTime pull-right'
+							style="width: 52%">
+							<input type='text' id="endTime" class="form-control endTime" name="endTime"
+								onkeypress="return false;" /> <span class="input-group-addon">
+								<span class="glyphicon glyphicon-calendar"> </span>
+							</span>
+						</div></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td class="submit">
+						<button type="button" style="margin-left: 10px;"
+							id="createBudgetRuleButton" class="btn btn-primary action updatesubcat"
+							onclick="createBudgetRule(this)">Submit</button>
+					</td>
+					<td>
+						<div id = "status">
+						</div>
+					</td>
+				</tr>
+					
+			</tbody>
+		</table>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: &nbsp;&nbsp;&nbsp;Quotes are not allowed in any name.<br>
+ 
+</body>
+
+<script type="text/javascript">
+	var dateToday = new Date();
+	dateToday = dateToday - 86400000;
+	$('.datetimepicker.startTime').datetimepicker({
+
+		format : 'YYYY/MM/DD HH:mm:ss',
+		orientation : 'top right',
+		defaultTime : true,
+		minuteStepping : 15
+	});
+	$('.datetimepicker.endTime').datetimepicker({
+
+		format : 'YYYY/MM/DD HH:mm:ss',
+		orientation : 'top right',
+		defaultTime : true,
+		minDate : dateToday ,
+	});
+
+	
+</script>
+
+<script>
+
+	var ruleId = "<s:property value="ruleId" />";
+	if (ruleId == "") {
+		$("#ruleId").attr(("value"), "");
+	} else {
+		$("#ruleId").attr(("value"), ruleId);
+	}
+	
+	var ruleType = "<s:property value="ruleType" />";
+	if (ruleType == "") {
+		$("#ruleType").attr(("value"), "");
+	} else {
+		$("#ruleType").attr(("value"), ruleType);
+		if (ruleType == "SV") {
+			document.getElementById('SV').checked = true;
+			document.getElementById('VB').checked = false;
+			showSupcBlock();
+		} else {
+			document.getElementById('VB').checked = true;
+			document.getElementById('SV').checked = false;
+			showBrandBlock();
+		}
+	}
+
+	var name = "<s:property value="name" />";
+	if (name == "") {
+		$("#name").attr(("value"), "");
+	} else {
+		$("#name").attr(("value"), name);
+	}
+
+	var pro = "<s:property value="pro" />";
+	if (pro == "") {
+		$("#pro").attr(("value"), "");
+	} else {
+		$("#pro").attr(("value"), pro);
+	}
+	
+	var supc = "<s:property value="supc" />";
+	if (supc == "") {
+		$("#supc").attr(("value"), "");
+	} else {
+		$("#supc").attr(("value"), supc);
+	}
+	
+	var vendor = "<s:property value="vendor" />";
+	if (vendor == "") {
+		$("#vendor").attr(("value"), "");
+	} else {
+		$("#vendor").attr(("value"), vendor);
+	}
+	
+	var brand = "<s:property value="brand" />";
+	if (brand == "") {
+		$("#brand").attr(("value"), "");
+	} else {
+		$("#brand").attr(("value"), brand);
+	}
+	
+	var budget = "<s:property value="budget" />";
+	if (budget == "") {
+		$("#budget").attr(("value"), "");
+	} else {
+		$("#budget").attr(("value"), budget);
+	}
+	
+	var saleTarget = "<s:property value="saleTarget" />";
+	if (saleTarget == "") {
+		$("#saleTarget").attr(("value"), "");
+	} else {
+		$("#saleTarget").attr(("value"), saleTarget);
+	}
+	
+	var gsvTarget = "<s:property value="gsvTarget" />";
+	if (gsvTarget == "") {
+		$("#gsvTarget").attr(("value"), "");
+	} else {
+		$("#gsvTarget").attr(("value"), gsvTarget);
+	}
+	
+	var startTime = "<s:property value="startTime" />";
+	if (startTime == "") {
+		$("#startTime").attr(("value"), "");
+	} else {
+		$("#startTime").attr(("value"), startTime);
+	}
+	
+	var endTime = "<s:property value="endTime" />";
+	if (endTime == "") {
+		$("#endTime").attr(("value"), "");
+	} else {
+		$("#endTime").attr(("value"), endTime);
+	}
+	
+</script>

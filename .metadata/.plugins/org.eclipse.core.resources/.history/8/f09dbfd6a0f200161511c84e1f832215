@@ -1,0 +1,32 @@
+/**
+ * 
+ */
+package ds.binarytree;
+
+/**
+ * @author rahul
+ *
+ */
+public class CreateBinaryTree {
+	
+	
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		BinaryTreeOperations binaryTreeOperations = new BinaryTreeOperations();
+		Node root = new Node(1);
+		Node rootLeft = new Node(2);
+		Node rootright = new Node(3);
+		root.setLeft(rootLeft);
+		root.setRight(rootright);
+		rootLeft.setLeft(new Node(4));
+		rootLeft.setRight(new Node(5));
+		rootright.setLeft(new Node(6));
+		rootright.setRight(new Node(7));
+		
+		binaryTreeOperations.
+	}
+
+}

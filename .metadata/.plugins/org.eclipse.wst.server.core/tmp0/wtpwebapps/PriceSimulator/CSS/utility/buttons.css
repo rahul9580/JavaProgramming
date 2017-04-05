@@ -1,0 +1,135 @@
+#viewSummary .panel{
+		margin : 0;
+		padding: 0;
+		border: none;
+	}
+	
+	#viewSummary table{
+		margin-bottom : 0;
+	}
+	
+	#viewSummary table tr{
+	    /* word-break: break-word; */
+	    border: 1px solid #DDDDDD;
+	}
+	
+	#viewSummary table tr.success td{
+		background: #D9EDF7;
+	}
+	
+	#viewSummary table tr.success td{
+		background: #D9EDF7;
+	}
+	
+	#viewSummary table th{
+		background-color: #f5f5f5; color: black;
+	}
+	
+	.selected_summary{
+		border: none; margin-top: 20px
+	}
+	
+	.table_gray{
+		 background-color: #f5f5f5; color: black
+	}
+	
+	.no_pad{
+		padding: 0;
+	}
+	
+	.no_mar{
+		margin: 0;
+	}
+
+.button
+{
+	cursor: pointer;
+	display: inline-block;
+	text-align:center;
+	color:#ffffff;
+	font-size:12px;
+	text-decoration:none;
+	-webkit-border-radius: 4px;    
+    border-radius: 4px;
+	border:1px solid #999;
+	-webkit-transition: background 100ms ease-in;
+	-moz-transition: background 100ms ease-in;
+    -ms-transition: background 100ms ease-in;
+    -o-transition: background 100ms ease-in;
+	transition: background 100ms ease-in;
+	text-shadow: none;
+}
+.button_pink
+{
+	background:#e45f5f;
+	border-color:#e45f5f;
+}
+.button_pink:hover
+{
+	background:#db4a4a;
+	border-color:#db4a4a;
+}
+.button_green
+{
+	background:#64b894;
+	border-color:#64b894;
+}
+.button_green:hover
+{
+	background:#4eab82;
+	border-color:#4eab82;
+}
+.button_blue
+{
+	background:#4ba2c6;
+	border-color:#4ba2c6;
+}
+.button_blue:hover
+{
+	background:#3a95ba;
+	border-color:#3a95ba;
+}
+.button_grey
+{
+	background: #a1a1a1;
+	border-color: #a1a1a1;
+}
+.button_grey:hover
+{
+	background: #919191;
+	border-color: #919191;
+}
+.button_brown
+{
+	background: #A18069;
+	border-color: #A18069;
+}
+.button_brown:hover
+{
+	background: #97765F;
+	border-color: #97765F;
+}
+.button_white
+{
+	background: #ffffff;
+	border-color: #ffffff;
+	color: #dddddd;
+}
+.button_white:hover
+{
+	background: #dddddd;
+	border-color: #dddddd;
+	color: #ffffff;
+}
+.button_red
+{
+	background: #DD4B39;
+	border-color: #DD4B39;
+	color: black;
+}
+.button_red:hover
+{
+	background: #ff3333;
+	border-color: #ff3333;
+	color: #ffffff;
+}

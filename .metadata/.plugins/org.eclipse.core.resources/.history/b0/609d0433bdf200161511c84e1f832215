@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package ds.binarytree;
+
+/**
+ * @author rahul
+ *
+ */
+public class BSTOperations {
+
+	public int findSumOfNEleAfterKthSmallest(Node root, int k, int n, int counter, int sum) {
+		if(root == null) {
+			return 0;
+		} 
+		if(counter >= k+n) {
+			return sum;
+		}
+		if(counter > k) {
+			sum += root.getData(); 
+		}
+		
+	}
+}

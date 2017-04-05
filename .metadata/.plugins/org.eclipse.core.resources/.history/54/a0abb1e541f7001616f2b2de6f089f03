@@ -1,0 +1,456 @@
+package com.snapdeal.monetization.base.retries;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.jdbc.support.JdbcUtils;
+import org.springframework.stereotype.Repository;
+
+import com.google.gson.Gson;
+import com.snapdeal.monetization.base.aerospike.cache.CacheManager;
+import com.snapdeal.monetization.base.common.serializer.SerializerType;
+import com.snapdeal.monetization.base.retries.model.RetryEntity;
+import com.snapdeal.monetization.base.retries.model.RetryTaskResponse;
+
+@Repository("retryDao")
+@Lazy
+public class RetryDaoImpl implements IRetryDao {
+
+	private static final org.slf4j.Logger	LOGGER				= LoggerFactory.getLogger(RetryDaoImpl.class);
+
+	private static final int	UPDATE_BATCH_SIZE	= 50;
+
+	@Autowired
+	private JdbcTemplate					jdbcTemplate;
+	private Gson							gson;
+	private ConcurrentMap<Long, Boolean>	producedIds			= new ConcurrentHashMap<>();
+
+	@Autowired
+	AlertsManager alertsManager;
+	@Autowired
+	private CacheManager cacheManager;
+
+	@PostConstruct
+	public void init() {
+		gson = new Gson();
+	}
+
+	@Override
+	public void save(final List<RetryEntity> retryEntitys, final String source, final String destination, final Class<?> klass) {
+		final Timestamp nextTime = new Timestamp(System.currentTimeMillis());
+		StringBuilder query = new StringBuilder();
+		query.append("INSERT INTO `cashback_automation`.`retry_events` ")
+				.append("(`request`,`update_time`,`source`,`destination`,`max_retry_count`,`time_interval`,`next_time`,`unique_ref`,`external_application_uid`)")
+				.append(" VALUES(?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ")
+				.append("`request`=?,`fail_count`=?,`next_time`=?,`time_interval`=?,`external_application_uid`=?");
+
+		jdbcTemplate.batchUpdate(query.toString(), new BatchPreparedStatementSetter() {
+
+			@Override
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				RetryEntity entity = retryEntitys.get(i);
+				final String jsonReq = gson.toJson(entity.getRequest(), klass);
+
+				ps.setString(1, jsonReq);
+				ps.setTimestamp(2, new Timestamp(new Date().getTime()));
+				ps.setString(3, source);
+				ps.setString(4, destination);
+				ps.setInt(5, entity.getMaxRetryCount());
+				ps.setInt(6, entity.getTimeInterval());
+				ps.setTimestamp(7, nextTime);
+				ps.setString(8, entity.getUniqueKey());
+				ps.setString(9, entity.getExternalUniqueId());
+
+				ps.setString(10, jsonReq);
+				ps.setInt(11, 0);
+				ps.setTimestamp(12, nextTime);
+				ps.setInt(13, entity.getTimeInterval());
+				ps.setString(14, entity.getExternalUniqueId());
+
+			}
+
+			@Override
+			public int getBatchSize() {
+				return retryEntitys.size();
+			}
+		});
+	}
+
+	// @Override
+	// public <T> boolean save(final RetryEntity<T> entity, final String source,
+	// final String destination, final Class<T> klass) {
+	// if (source == null || destination == null || klass == null) {
+	// throw new RuntimeException("Please register retry service before use");
+	// }
+	// LOGGER.debug("Inside save()");
+	// try {
+	// final Timestamp nextTime = new Timestamp(System.currentTimeMillis());
+	// final String jsonReq = gson.toJson(entity.getRequest(), klass);
+	// StringBuilder query = new StringBuilder();
+	// query.append("INSERT INTO `cashback_automation`.`retry_events` ")
+	// .append("(`request`,`update_time`,`source`,`destination`,`max_retry_count`,`time_interval`,`next_time`,`unique_ref`,`external_application_uid`)")
+	// .append(" VALUES(?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE ")
+	// .append("`request`=?,`fail_count`=?,`next_time`=?,`time_interval`=?,`external_application_uid`=?");
+	//
+	// jdbcTemplate.update(query.toString(), new PreparedStatementSetter() {
+	//
+	// @Override
+	// public void setValues(PreparedStatement ps) throws SQLException {
+	// ps.setString(1, jsonReq);
+	// ps.setTimestamp(2, new Timestamp(new Date().getTime()));
+	// ps.setString(3, source);
+	// ps.setString(4, destination);
+	// ps.setInt(5, entity.getMaxRetryCount());
+	// ps.setInt(6, entity.getTimeInterval());
+	// ps.setTimestamp(7, nextTime);
+	// ps.setString(8, entity.getUniqueKey());
+	// ps.setString(9, entity.getExternalUniqueId());
+	//
+	// ps.setString(10, jsonReq);
+	// ps.setInt(11, 0);
+	// ps.setTimestamp(12, nextTime);
+	// ps.setInt(13, entity.getTimeInterval());
+	// ps.setString(14, entity.getExternalUniqueId());
+	// }
+	//
+	// });
+	// } catch (Exception ex) {
+	// LOGGER.error("Error::: ", ex);
+	// return false;
+	// }
+	// LOGGER.debug("Exiting save()");
+	// return true;
+	// }
+	
+	@SuppressWarnings("resource")
+	@Override
+	public boolean save(final RetryEntity entity, final String source, final String destination, final Class<?> klass) {
+		if (source == null || destination == null || klass == null) {
+			throw new RuntimeException("Please register retry service before use");
+		}
+		DataSource dataSource = null;
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet resultSet = null;
+		boolean status = false;
+		long time = System.currentTimeMillis();
+		try {
+			final Timestamp nextTime = new Timestamp(System.currentTimeMillis());
+			dataSource = jdbcTemplate.getDataSource();
+			connection = DataSourceUtils.getConnection(dataSource);
+			connection.setAutoCommit(false);
+			String uniqueKey = entity.getUniqueKey();
+			/*if (null != uniqueKey) {
+>>>>>>> release-V1.0.5.4
+				String sql = "SELECT `id` FROM `cashback_automation`.`retry_events` WHERE `unique_ref` = ? FOR UPDATE";
+				ps = connection.prepareStatement(sql);
+				ps.setString(1, uniqueKey);
+				resultSet = ps.executeQuery();
+				if (resultSet != null && resultSet.first()) {
+					String updateSql = "UPDATE `cashback_automation`.`retry_events` SET `fail_count`=?,`next_time`=?,`time_interval`=?,`external_application_uid`=? WHERE `unique_ref` = ?";
+					ps = connection.prepareStatement(updateSql);
+					ps.setInt(1, 0);
+					ps.setTimestamp(2, nextTime);
+					ps.setInt(3, entity.getTimeInterval());
+					ps.setString(4, entity.getExternalUniqueId());
+					ps.setString(5, uniqueKey);
+				} else {
+					StringBuilder query = new StringBuilder();
+					query.append("INSERT INTO `cashback_automation`.`retry_events` ")
+							.append("(`request`,`update_time`,`source`,`destination`,`max_retry_count`,`time_interval`,`next_time`,`unique_ref`,`external_application_uid`)")
+							.append(" VALUES(?,?,?,?,?,?,?,?,?)");
+					ps = connection.prepareStatement(query.toString());
+					ps.setString(1, gson.toJson(entity.getRequest(), klass));
+					ps.setTimestamp(2, new Timestamp(new Date().getTime()));
+					ps.setString(3, source);
+					ps.setString(4, destination);
+					ps.setInt(5, entity.getMaxRetryCount());
+					ps.setInt(6, entity.getTimeInterval());
+					ps.setTimestamp(7, nextTime);
+					ps.setString(8, entity.getUniqueKey());
+					ps.setString(9, entity.getExternalUniqueId());
+				}
+				status = ps.execute();
+<<<<<<< HEAD
+			} else {
+				StringBuilder query = new StringBuilder();
+				query.append("INSERT INTO `cashback_automation`.`retry_events` ")
+						.append("(`request`,`update_time`,`source`,`destination`,`max_retry_count`,`time_interval`,`next_time`,`external_application_uid`)")
+						.append(" VALUES(?,?,?,?,?,?,?,?)");
+=======
+			} else*/// {
+				StringBuilder query = new StringBuilder();
+				query.append("INSERT INTO `cashback_automation`.`retry_events` ")
+						.append("(`request`,`update_time`,`source`,`destination`,`max_retry_count`,`time_interval`,`next_time`,`external_application_uid`,`fail_count`)")
+						.append(" VALUES(?,?,?,?,?,?,?,?,?)");
+				ps = connection.prepareStatement(query.toString());
+				ps.setString(1, gson.toJson(entity.getRequest(), klass));
+				ps.setTimestamp(2, new Timestamp(new Date().getTime()));
+				ps.setString(3, source);
+				ps.setString(4, destination);
+				ps.setInt(5, entity.getMaxRetryCount());
+				ps.setInt(6, entity.getTimeInterval());
+				ps.setTimestamp(7, nextTime);
+				ps.setString(8, entity.getExternalUniqueId());
+				ps.setInt(9, entity.getFailCount());
+				status = ps.execute();
+			//}
+			connection.commit();
+		} catch (Exception ex) {
+			try {
+				if (connection != null)
+					connection.rollback();
+			} catch (SQLException e) {
+			}
+			LOGGER.error("Error::: ", ex);
+			return false;
+		} finally {
+			try {
+				if (connection != null) {
+					connection.setAutoCommit(true);
+				}
+				JdbcUtils.closeResultSet(resultSet);
+				JdbcUtils.closeStatement(ps);
+				DataSourceUtils.releaseConnection(connection, dataSource);
+			} catch (SQLException e) {
+				LOGGER.error("Error::: ", e);
+			}
+		}
+		LOGGER.info("inserted into retry events table {}, take time {} ", status, (System.currentTimeMillis() - time));
+		return true;
+	}
+
+	@Override
+	public String getMaxId() {
+		String sql = "SELECT MAX(`id`) as id FROM `cashback_automation`.`retry_events`";
+
+		try {
+			return jdbcTemplate.query(sql, new Object[] {}, new ResultSetExtractor<String>() {
+				@Override
+				public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+					while (rs.next()) {
+						return rs.getString("id");
+					}
+					return "0";
+				}
+			});
+		} catch(Throwable th) {
+			LOGGER.error("Error in getData:::", th);
+		}
+		
+		return "0";
+	}
+
+	@Override
+	public Map<Long, RetryEntity> getData(final String source, final String destination, final Class<?> klass, final Map<Long, RetryEntity> map, final boolean isAlertEnabled) {
+		LOGGER.info("Inside getData()");
+		long startTime=System.currentTimeMillis();
+		try {
+
+			Long offeset = (Long) cacheManager.getValue(com.snapdeal.monetization.base.constant.SetBinConstant.Namespace.MONETIZATION_CACHE,
+					com.snapdeal.monetization.base.constant.SetBinConstant.Set.RETRY_OFFSET, source+"-"+destination, Long.class,
+					SerializerType.GSON_SERIALIZER);
+			
+			if (null == offeset) {
+				alertsManager.alert("Null offset found for " + source + "-" + destination);
+				return map;
+			}
+			
+			String sql = "SELECT `request`,`id`,`update_time`,`fail_count`, `max_retry_count` FROM `cashback_automation`.`retry_events` where id > ? AND `source`=? AND `destination` = ? order by `id` asc LIMIT 5000";
+			
+			return jdbcTemplate.query(sql, new Object[] { offeset , source, destination }, new ResultSetExtractor<Map<Long, RetryEntity>>() {
+				@Override
+				public Map<Long, RetryEntity> extractData(ResultSet rs) throws SQLException, DataAccessException {
+					int count = 0;
+					while (rs.next()) {
+						if ((count == 0) && isAlertEnabled) {
+							count = 1;
+							alertsManager.checkAlert(System.currentTimeMillis() - rs.getTimestamp("update_time").getTime(), (source + "-" + destination));
+						}
+						RetryEntity entity = new RetryEntity();
+						entity.setRequest(gson.fromJson(rs.getString("request"), klass));
+						entity.setFailCount(rs.getInt("fail_count")+1);
+						entity.setMaxRetryCount(rs.getInt("max_retry_count"));
+						map.put(rs.getLong("id"), entity);
+
+					}
+					return map;
+				}
+			});
+		} catch (Exception e) {
+			StringBuilder message = new StringBuilder("Exception occurred in retry events: ");
+			message.append(e.getMessage());
+			alertsManager.alert(message.toString());
+			LOGGER.error("Error in getData:::", e);
+		}
+
+		LOGGER.info("Exiting getData()::time_taken::"+(System.currentTimeMillis()-startTime));
+		return Collections.emptyMap();
+	}
+
+	@Override
+	public void updateData(Map<Long, Boolean> executeResponse, Map<Long, RetryEntity> execute, Class<?> klass, String source, String destination) {
+		try{
+			if (executeResponse == null || executeResponse.isEmpty()) {
+				LOGGER.info("Empty retry execution response recieved");
+				return;
+			}
+
+			long maxId = 0;
+			Set<Long> mapKeys = execute.keySet();
+			for(Long key : mapKeys) {
+				if(!executeResponse.get(key)) {
+					RetryEntity value = execute.get(key);
+					int maxRetryCount = value.getMaxRetryCount();
+					int failCount = value.getFailCount();
+					if(failCount < maxRetryCount) {
+						value.setTimeInterval(30);
+						save(value, source, destination, klass);
+					}
+				}
+				if(maxId < key)
+					maxId = key;
+			}
+			cacheManager.putValue(com.snapdeal.monetization.base.constant.SetBinConstant.Namespace.MONETIZATION_CACHE, com.snapdeal.monetization.base.constant.SetBinConstant.Set.RETRY_OFFSET,
+					source+"-"+destination, maxId, SerializerType.GSON_SERIALIZER, -1);
+			LOGGER.info("updated data");
+		}catch(Exception e){
+			LOGGER.error("Error in update ", e);
+		}
+	}
+	
+	/*
+	@Override
+	public void updateData(Map<Integer, Boolean> executeResponse) {
+		LOGGER.debug("Inside updateData()");
+		long startTime=System.currentTimeMillis();
+>>>>>>> release-V1.0.5.4
+		try {
+			StringBuilder builder = new StringBuilder();
+			int idx = 0;
+			for (String uid : externalAppUid) {
+				if (idx > 0) {
+					builder.append(",");
+				}
+				builder.append(uid);
+				if (++idx == UPDATE_BATCH_SIZE) {
+					try {
+<<<<<<< HEAD
+						String sql = "DELETE FROM cashback_automation.retry_events WHERE external_application_uid in ( " + builder.toString() + ") order by id asc";
+						jdbcTemplate.update(sql);
+					} catch (Exception e) {
+						LOGGER.error("Error in update ", e);
+=======
+						//String sqlDelete = "DELETE FROM `cashback_automation`.`retry_events` where id IN (" + delString.toString() + ")";
+						String sqlDelete = "update `cashback_automation`.`retry_events` set fail_count=10 where id IN (" + delString.toString() + ")";
+						jdbcTemplate.update(sqlDelete);
+						LOGGER.info("Deleted id: {}", delString.toString());
+						Thread.sleep(100);
+					} catch (Throwable e) {
+						LOGGER.error("Failed to delete ", e);
+>>>>>>> release-V1.0.5.4
+					}
+					idx = 0;
+					builder = new StringBuilder();
+				}
+			}
+			if (idx > 0) {
+				try {
+					String sql = "DELETE FROM cashback_automation.retry_events WHERE external_application_uid in ( " + builder.toString() + ") order by id asc";
+					jdbcTemplate.update(sql);
+				} catch (Exception e) {
+					LOGGER.error("Error in update ", e);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error in deleteRetryEventList ", e);
+		}
+<<<<<<< HEAD
+		LOGGER.info("exiting removeEntryBasedOnExternalAppId");
+	}
+
+	@Override
+	public void updateTaskResponse(RetryTaskResponse response) {
+		LOGGER.debug("Inside updateTaskResponse");
+=======
+		LOGGER.info("Exiting updateData()::time_taken:::"+(System.currentTimeMillis()-startTime));
+	}
+*/
+	
+	@Override
+	public void removeEntryBasedOnExternalAppId(List<String> externalAppUid) {
+		LOGGER.info("Inside removeEntryBasedOnExternalAppId");
+		try {
+			StringBuilder builder = new StringBuilder();
+			int idx = 0;
+			for (String uid : externalAppUid) {
+				if (idx > 0) {
+					builder.append(",");
+				}
+				builder.append(uid);
+				if (++idx == UPDATE_BATCH_SIZE) {
+					try {
+						String sql = "DELETE FROM cashback_automation.retry_events WHERE external_application_uid in ( " + builder.toString() + ") order by id asc";
+						jdbcTemplate.update(sql);
+					} catch (Exception e) {
+						LOGGER.error("Error in update ", e);
+					}
+					idx = 0;
+					builder = new StringBuilder();
+				}
+			}
+			if (idx > 0) {
+				try {
+					String sql = "DELETE FROM cashback_automation.retry_events WHERE external_application_uid in ( " + builder.toString() + ") order by id asc";
+					jdbcTemplate.update(sql);
+				} catch (Exception e) {
+					LOGGER.error("Error in update ", e);
+				}
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error in deleteRetryEventList ", e);
+		}
+		LOGGER.info("exiting removeEntryBasedOnExternalAppId");
+	}
+
+	
+	@Override
+	public void updateTaskResponse(RetryTaskResponse response) {
+		LOGGER.debug("Inside updateTaskResponse");
+		try {
+			if (response.isStatus()) {
+				String sql = "DELETE FROM `cashback_automation`.`retry_events` where id = ?";
+				jdbcTemplate.update(sql, response.getId());
+			} else {
+				String sql = "UPDATE `cashback_automation`.`retry_events` set `fail_count` = `fail_count`+1 , `update_time` = now() , `next_time` = date_add(now(), INTERVAL `time_interval` SECOND) where id = ?";
+				jdbcTemplate.update(sql, response.getId());
+			}
+		} catch (Exception e) {
+			LOGGER.error("Error in updateTaskResponse ", e);
+		}
+		producedIds.remove(response.getId());
+		LOGGER.debug("exiting updateTaskResponse");
+	}
+
+}

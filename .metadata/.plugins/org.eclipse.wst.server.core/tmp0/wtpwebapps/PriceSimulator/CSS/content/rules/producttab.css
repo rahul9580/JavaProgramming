@@ -1,0 +1,155 @@
+table.productrules
+{
+	width: 90%;
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc; 
+    -moz-box-shadow: 0 1px 1px #ccc; 
+    box-shadow: 0 1px 1px #ccc;         
+}
+table.productrules tr:hover
+{
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;     
+}   
+table.productrules td, table.productrules th
+{
+	padding: 4px;
+	height: 30px;
+	text-align: left;   
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc; 
+}
+table.productrules th
+{
+	color: #ffffff;
+	background-color: #4ba2c6;
+	font-family: Helvetica;
+	border-top: none;
+	outline: 1px dashed #4ba2c6;
+	outline-offset: -3px;
+}
+table.productrules td:first-child, table.productrules th:first-child
+{
+    border-left: none;
+}
+table.productrules th:first-child
+{
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+table.productrules th:last-child
+{
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+table.productrules th:only-child
+{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+table.productrules tr:last-child td:first-child
+{
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+table.productrules tr:last-child td:last-child
+{
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+table.productrules td:first-child
+{
+	text-align: center;
+}
+table.productrules td:nth-child(2)
+{
+	min-width: 300px;
+	max-width: 300px;
+}
+table.productrules td:nth-child(4)
+{
+	min-width: 100px;
+	max-width: 100px;
+}
+table.productrules td:nth-child(5)
+{
+	min-width: 70px;
+	max-width: 70px;
+}
+table.productrules td:nth-child(6)
+{
+	min-width: 100px;
+	max-width: 100px;
+}
+table.productrules td:nth-child(7)
+{
+	min-width: 90px;
+	max-width: 90px;
+}
+table.productrules td:last-child
+{
+	min-width: 40px;
+	max-width: 40px;
+}
+table.productrules td span.detailhead
+{
+	margin-top: 4px;
+	float: left;
+	display: block;
+	color: #4ba2c6;
+	font-size: 11px;
+	width: 100%;
+}
+table.productrules td span.detailvalue
+{
+	display: block;
+	color: #000000;
+	font-size: 14px;
+	width: 100%;
+}
+table.productrules td > input
+{
+	width: 98%;
+	text-align: left;
+	font-size: 15px;
+	background: #ffffff;
+	color: #000000;
+}
+table.productrules td > span.updateproduct
+{
+	display: inline-block;
+	width: 70px;
+	height: 22px;
+	line-height: 2;
+}
+table.productrules td > span.deleteproduct
+{
+	display: inline-block;
+	margin-left: 2px;
+	width: 20px;
+	height: 22px;
+	line-height: 2;
+}
+span.updateallproduct
+{
+	margin: 1%;
+	width: 100px;
+	height: 25px;
+	line-height: 2;
+}
+span.hidden
+{
+	display: none;
+}

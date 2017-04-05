@@ -1,0 +1,3 @@
+Subcategory,brand,lower limit,upper limit,shipping charge,Action (ADD/DELETE)
+32,477,0,100,30,ADD
+46,123,,,,DELETE

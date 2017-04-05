@@ -1,0 +1,162 @@
+table.products {
+	/* width: 70%; */
+	/* padding: 0; */
+	/* margin: 5%; */
+	/* float: left; */
+	/* background: white; */
+	/* border: 1px solid; */
+}
+
+table td.bg {
+	padding: 6px 6px 6px 12px;
+	min-width: 60px;
+	max-width: 110px;
+	color: #ffffff;
+	text-align: center;
+	font-family: Helvetica;
+	background: #4ba2c6;
+}
+
+table th {
+	color: white;
+	background-color: #4ba2c6;
+}
+
+table.brandrules {
+	width: 80%;
+	padding: 15px;
+	margin: 0;
+	left-margin: 25px;
+}
+
+.table {
+	left-margin: 25px;
+}
+
+/* table.brandrules th {
+	padding: 6px 6px 6px 12px;
+	min-width: 60px;
+	max-width: 110px;
+	color: #ffffff;
+	text-align: center;
+	font-family: Helvetica;
+	background: #4ba2c6;
+	outline: 1px dashed #4ba2c6;
+	outline-offset: -3px;
+}
+
+table.brandrules {
+	background: none;
+}
+
+table.brandrules tr:first-child th:first-child {
+	color: #000000;
+	background: #ffffff;
+	outline: none;
+}
+
+table.brandrules tr:first-child th:nth-child(2) {
+	border-radius: 5px 0 0 0;
+}
+
+table.brandrules tr:first-child th:last-child {
+	border-radius: 0 5px 0 0;
+}
+
+table.brandrules tr:nth-child(2) th:first-child {
+	border-radius: 5px 0 0 0;
+}
+
+table.brandrules tr:last-child th:first-child {
+	border-radius: 0 0 0 5px;
+}
+
+table.brandrules tr th:first-child {
+	background: #4ba2c6;
+	outline: 1px dashed #4ba2c6;
+	outline-offset: -3px;
+}
+
+table.brandrules tr td:last-child {
+	border-right: 1px solid #4ba2c6;
+}
+
+table.brandrules th select {
+	width: 98%;
+	color: #ffffff;
+	background: #4ba2c6;
+	border: none;
+	font-weight: bold;
+}
+
+table.brandrules th>select option {
+	color: #ffffff;
+}
+
+table.brandrules td {
+	padding: 6px 6px 6px 12px;
+	min-width: 90px;
+	max-width: 110px;
+	text-align: center;
+	background: #ffffff;
+	border-bottom: 1px solid #4ba2c6;
+} */
+
+/* table.brandrules tr:hover td {
+	background: #a6a6a6;
+} */
+/* 
+table.brandrules td>input {
+	width: 90%;
+	text-align: center;
+}
+
+table.brandrules td>span.updatebrand {
+	display: inline-block;
+	width: 70px;
+	height: 22px;
+	line-height: 2;
+}
+
+table.brandrules td>span.deletebrand {
+	display: inline-block;
+	margin-left: 2px;
+	width: 20px;
+	height: 22px;
+	line-height: 2;
+}
+
+span.addbrand, span.updateallbrand, div.load {
+	margin: 1%;
+	width: 100px;
+	height: 25px;
+	line-height: 2;
+}
+
+div.action>span.updatesubcat {
+	display: inline-block;
+	float: left;
+	margin: 1%;
+	width: 100px;
+	height: 25px;
+	line-height: 2;
+}
+
+div.action>span.processesubcat {
+	display: inline-block;
+	float: left;
+	margin: 1%;
+	width: 100px;
+	height: 25px;
+	line-height: 2;
+}
+
+div.action>div.report {
+	display: inline-block;
+	position: relative;
+	top: 10px;
+	margin-left: 2%;
+	width: 50%;
+	height: 40px;
+	overflow: hidden;
+} */

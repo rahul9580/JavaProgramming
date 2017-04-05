@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package ds.tree;
+
+/**
+ * @author rahul
+ *
+ */
+public class CreateTree {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		Node root = new Node(1);
+		root.setLeft(new Node(2));
+		root.setRight(new Node(2));
+		
+	}
+
+}

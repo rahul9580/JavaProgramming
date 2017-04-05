@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+package Test;
+
+/**
+ * @author rahul
+ *
+ */
+public class Polimorphism {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Animal {
+	public void printFood() {
+		System.out.println("Animal food...");
+	}
+}

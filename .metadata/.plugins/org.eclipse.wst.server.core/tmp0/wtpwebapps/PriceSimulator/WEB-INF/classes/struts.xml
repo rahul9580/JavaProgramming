@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<constant name="struts.multipart.maxSize" value="100000000" />
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="putCacheData" class="action.PutDataInCacheAction">
+			 <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>	 	
+		</action>
+		<action name="kafkaProducer" class="com.snapdeal.action.KafkaProducerAPIAction"></action>
+		<action name="manageSubcat" class="com.snapdeal.action.ManageSubcategoryAction">
+			 <result name="subcatConfiguration">/JSP/base/managesubcategory.jsp</result>	
+			 <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>	 	
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="shippingConfig" class="com.snapdeal.monetization.shippingengine.action.ShippingConfigurationAction">
+      		<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="shippingConfig">/JSP/ShippingEngineUi/base/shippingConfig.jsp</result>
+        </action>
+		<action name="vendorBrandSubcat" class="com.snapdeal.monetization.shippingengine.action.VendorBrandSubcatUpdateAction">
+			 <result name="vendorBrandSubcat">/JSP/base/managesubcategory.jsp</result>	
+			 <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>	 	
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="fileUpload" type="stream">
+	  			<param name="contentType">application/octet-stream</param>
+	  			<param name="inputName">fileInputStream</param>
+	  			<param name="contentDisposition">attachment;filename="SubcatBrand.csv"</param>
+	  			<param name="bufferSize">1024</param>
+			</result>
+			<result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+		</action>
+		<action name="downloadShippingRules" class="com.snapdeal.monetization.shippingengine.action.DownloadShippingRulesAction">
+			<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+		<action name="authorization" class="com.snapdeal.action.AuthorizationAction">
+			 <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="shippingCostUI" class="com.snapdeal.action.ShippingCostUI">
+			<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+        <action name="exceptionUpdate" class="com.snapdeal.monetization.shippingengine.action.ExceptionUpdateAction">
+			<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="fileUpload" type="stream">
+	  			<param name="contentType">application/octet-stream</param>
+	  			<param name="inputName">fileInputStream</param>
+	  			<param name="contentDisposition">attachment;filename="exceptionList.csv"</param>
+	  			<param name="bufferSize">1024</param>
+			</result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+        <action name="subcatShipping" class="com.snapdeal.monetization.shippingengine.action.SubcatRuleAction">
+      		<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="fileUpload" type="stream">
+	  			<param name="contentType">application/octet-stream</param>
+	  			<param name="inputName">fileInputStream</param>
+	  			<param name="contentDisposition">attachment;filename="SubcatList.csv"</param>
+	  			<param name="bufferSize">1024</param>
+			</result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+        <action name="preCBShipping" class="com.snapdeal.monetization.shippingengine.action.PreCBRuleAction">
+      		<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="fileUpload" type="stream">
+	  			<param name="contentType">application/octet-stream</param>
+	  			<param name="inputName">fileInputStream</param>
+	  			<param name="contentDisposition">attachment;filename="PreCbList.csv"</param>
+	  			<param name="bufferSize">1024</param>
+			</result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+        <action name="subcatBrandShipping" class="com.snapdeal.monetization.shippingengine.action.SubcatBrandRuleAction">
+      		<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+                        <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="fileUpload" type="stream">
+	  			<param name="contentType">application/octet-stream</param>
+	  			<param name="inputName">fileInputStream</param>
+	  			<param name="contentDisposition">attachment;filename="SubcatBrandList.csv"</param>
+	  			<param name="bufferSize">1024</param>
+			</result>
+            <result name="shippingUI">/JSP/ShippingEngineUi/base/main.jsp</result>
+        </action>
+
+    </package>
+	<package name="menubar" namespace="/" extends="struts-default">
+		<action name="login" class="action.LoginAction">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+			<result name="budgetRuleSummary" type="redirectAction">budgetRule/budgetRuleSummary</result>
+		</action>
+
+		<action name="supcScrapUpdate" class="com.snapdeal.action.SupcScrapUpdateAction">
+		</action>
+
+		<action name="kafkaProducer" class="com.snapdeal.action.KafkaProducerAPIAction"></action>
+
+		<action name="updatePassword" class="action.UpdatePasswordAction">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+
+		<action name="viewSummary" class="action.ViewSummaryAction">
+			<result name="viewSummary">/JSP/base/viewSummary.jsp</result>
+			<result name="viewUpdateSummary" type="redirectAction">
+				<param name="actionName">viewSummary</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="editBrand">/JSP/base/editBrand.jsp</result>
+			<result name="editSubcat">/JSP/base/editCategory.jsp</result>
+			<result name="editCluster">/JSP/base/editcluster.jsp</result>
+			<result name="editProduct">/JSP/base/editProduct.jsp</result>
+			<result name="editOCPTable">/JSP/base/editOCPTable.jsp</result>
+
+
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="Summary.xlsx"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+			<result name="downloadPA" type="stream">
+			    <param name="contentType">application/csv</param>
+        		<param name="inputName">inputStream</param>
+        		<param name="contentDisposition">attachment;filename="SupcVendorsOnPA.csv"</param>
+        		<param name="bufferSize">8192</param>
+			</result>
+
+
+			<!-- <result name="login" type="redirectAction">login</result> -->
+		</action>
+
+
+		<action name="home" class="action.HomeAction">
+			<result name="home">/JSP/base/home.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+
+
+		<action name="changePassword" class="action.ChangePasswordAction">
+			<result name="changePassword">/JSP/base/changePassword.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+
+
+
+		<action name="rules" class="action.RulesAction">
+			<result name="rules">/JSP/base/rules.jsp</result>
+			<result name="login" type="redirectAction">login</result>
+		</action>
+
+		<action name="logout" class="action.LogoutAction">
+			<result name="login" type="redirectAction">login</result>
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+	</package>
+
+	<package name="exceptions" namespace="/exceptions" extends="struts-default">
+	    <action name="exceptionBulkupload" class="com.snapdeal.monetization.ps.action.ExceptionBulkuploadAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="activity">/JSP/base/ExceptionBulkUpload.jsp</result>
+			<result name="redirectToBulkExceptionUploadPage" type="redirectAction">
+			    <param name="actionName">exceptionBulkupload</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="downloadFile" type="stream">
+					<param name="contentType">application/octet-stream</param>
+					<param name="inputName">inputStream</param>
+					<param name="contentDisposition">attachment;filename="ExceptionBulk.csv"</param>
+					<param name="bufferSize">8192</param>
+				</result>
+		</action>
+		<action name="sellerManagement" class="action.SellerManagementAction">
+	        <result name="sellerManagement">/JSP/base/sellerManagement.jsp</result>
+	        <result name="activity">/JSP/utility/activity.jsp</result>
+	        <result name="login" type="redirectAction">
+	                <param name="actionName">login</param>
+	                <param name="namespace">/</param>
+	        </result>
+	        <result name="downloadFile" type="stream">
+					<param name="contentType">application/octet-stream</param>
+					<param name="inputName">inputStream</param>
+					<param name="contentDisposition">attachment;filename="SellerManagement.xlsx"</param>
+					<param name="bufferSize">8192</param>
+				</result>
+		</action>
+		
+		<action name="DownloadSFCB" class="com.snapdeal.action.SFCBDownloadAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="sfcb">/JSP/content/sfcb.jsp</result>
+			<!-- <result name="download">
+					<param name="contentType">application/octet-stream</param>
+					<param name="inputName">inputStream</param>
+					<param name="contentDisposition">attachment;filename="DBDump.zip"</param>
+					<param name="bufferSize">8192</param>
+			</result> -->
+		</action>
+		
+		<action name="redirectToSFCB" class="com.snapdeal.action.RedirectToSFCB">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="sfcb">/JSP/content/sfcb.jsp</result>
+		</action>
+		
+		
+		<action name="uploadSFCB" class="com.snapdeal.action.SFCBUploadAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="sfcb">/JSP/content/sfcb.jsp</result>
+		</action>
+
+		<action name="sellerList" class="com.snapdeal.action.SellerListAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+		</action>
+		
+		<action name="sellerListDelete" class="com.snapdeal.action.SellerListDeleteAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+		</action>
+		
+		<action name="subcatConstraintDelete" class="com.snapdeal.action.SubcatConstraintDeleteAction">
+      <result name="login" type="redirectAction">
+        <param name="actionName">login</param>
+        <param name="namespace">/</param>
+      </result>
+      <result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+    </action>
+    
+		<action name="criticalbrandDelete" class="com.snapdeal.action.CriticalBrandDeleteAction">
+      <result name="login" type="redirectAction">
+        <param name="actionName">login</param>
+        <param name="namespace">/</param>
+      </result>
+      <result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+    </action>
+
+    <action name="sellerListDownload" class="com.snapdeal.action.SellerListDownload">
+      <result name="login" type="redirectAction">
+        <param name="actionName">login</param>
+        <param name="namespace">/</param>
+      </result>
+      <result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+      <result name="downloadSeller" type="stream">
+        <param name="contentType">application/octet-stream</param>
+        <param name="inputName">inputStream</param>
+        <param name="contentDisposition">attachment;filename="sellers.xlsx"</param>
+        <param name="bufferSize">8192</param>
+      </result>
+      <result name="downloadSubcat" type="stream">
+        <param name="contentType">application/octet-stream</param>
+        <param name="inputName">inputStream</param>
+        <param name="contentDisposition">attachment;filename="Subcats.xlsx"</param>
+        <param name="bufferSize">8192</param>
+      </result>
+      <result name="downloadBrand" type="stream">
+        <param name="contentType">application/octet-stream</param>
+        <param name="inputName">inputStream</param>
+        <param name="contentDisposition">attachment;filename="BrandIds.xlsx"</param>
+        <param name="bufferSize">8192</param>
+      </result>
+    </action>
+
+    <action name="multiVariantUpdate" class ="com.snapdeal.action.MultiVariateUpdateAction">
+        <result name="view">/JSP/base/exceptions/managePriceAnalytics.jsp</result>
+		<result name="activity">/JSP/utility/activity.jsp</result>
+		<result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+		<result name="home" type="redirectAction">
+			<param name="actionName">rules</param>
+			<param name="namespace">/</param>
+		</result>
+    </action>
+
+    <action name="multiSubcatVariantUpdate" class ="com.snapdeal.action.MultiSubcatVariateUpdateAction">
+        <result name="view">/JSP/base/exceptions/manageMultiPriceAnalytics.jsp</result>
+		<result name="activity">/JSP/utility/activity.jsp</result>
+		<result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+		<result name="home" type="redirectAction">
+			<param name="actionName">rules</param>
+			<param name="namespace">/</param>
+		</result>
+    </action>
+
+    <action name="multiVariateView"
+			class="com.snapdeal.action.MultiVariateViewAction">
+		<result name="view">/JSP/base/exceptions/managePriceAnalytics.jsp</result>
+		<result name="activity">/JSP/utility/activity.jsp</result>
+		<result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+		<result name="home" type="redirectAction">
+			<param name="actionName">rules</param>
+			<param name="namespace">/</param>
+		</result>
+	</action>
+		
+		<action name="singleCashBackConfigAction" class="action.CashBackConfigAction">
+			<result name="cashBackConfig">/JSP/base/exceptions/singleSubcat.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="multipleCashBackConfigAction" class="action.CashBackConfigAction">
+			<result name="cashBackConfig">/JSP/base/exceptions/multiSubcat.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	
+		<action name="manageAllSubcat" class="action.ManageMultipleSubcatAction">
+			<result name="manageMultiSubcat">/JSP/base/exceptions/manageMultiSubcat.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	<action name="manageSubcatUpdate" class="com.snapdeal.action.ManageMultiSubcategoryAction">
+			 <result name="subcatConfiguration">/JSP/base/exceptions/manageMultiSubcat.jsp</result>	
+			 <result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>	 	
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		
+		<action name="subcatFreq" class="action.subcatFreq">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="subcatFreq">/JSP/base/exceptions/subcatFreq.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+		<action name="updateFreq" class="action.UpdateFreq">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="subcatFreq">/JSP/base/exceptions/subcatFreq.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+
+		<action name="runFreq" class="action.RunFreq">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="subcatFreq">/JSP/base/exceptions/subcatFreq.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+
+		<action name="addFreq" class="action.AddFreq">
+			<result name="login">/JSP/base/login.jsp</result>
+			<result name="subcatFreq">/JSP/base/exceptions/subcatFreq.jsp</result>
+			<result name="home" type="redirectAction">rules</result>
+		</action>
+
+
+		<action name="createclusters" class="com.snapdeal.action.CreateClustersAction">
+			<result name="clusters">/JSP/base/exceptions/createclusters.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="product.xlsx"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+
+
+
+
+		<action name="scraperUpdate" class="com.snapdeal.action.ScraperUpdateAction">
+
+		</action>
+
+		<action name="viewSummary" class="action.ViewSummaryAction">
+			<result name="viewSummary">/JSP/base/viewSummary.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="authenticateUser" class="com.snapdeal.action.UserAuthenticationAction">
+			<result name="userSubCatMapping">/JSP/base/exceptions/authenticateUser.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="manageSubcat" class="com.snapdeal.action.ManageSubcatAction">
+			<result name="clusters">/JSP/base/exceptions/manageSubcat.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+		<action name="manageSubcatConf" class="com.snapdeal.action.ManageSubcatConfAction">
+
+			<result type="redirectAction" name="clusters">
+				<param name="actionName">manageSubcat</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+		<action name="priceAnalyticsConfView"
+			class="com.snapdeal.monetization.analytics.PriceAnalyticsViewAction">
+			<result name="view">/JSP/base/exceptions/managePriceAnalytics.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="priceAnalyticsMultiConfView"
+			class="com.snapdeal.monetization.analytics.PriceAnalyticsMultiViewAction">
+			<result name="view">/JSP/base/exceptions/manageMultiPriceAnalytics.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="sellerConstraintConfig" class="com.snapdeal.action.SellerConstraintConfig">
+			<result name="login" type="redirectAction">
+                <param name="actionName">login</param>
+                <param name="namespace">/</param>
+            </result>
+            <result name="scc">/JSP/base/exceptions/SellerConstraintConfig.jsp</result>
+		</action>
+
+		<action name="priceAnalyticsConfUpdate"
+			class="com.snapdeal.monetization.analytics.PriceAnalyticsConfAction">
+			<result type="redirectAction" name="viewConf">
+				<param name="actionName">priceAnalyticsConfView</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+		</action>
+		
+		<action name="priceAnalyticsMultiConfUpdate"
+			class="com.snapdeal.monetization.analytics.PriceAnalyticsMultiConfAction">
+			<result type="redirectAction" name="viewConf">
+				<param name="actionName">priceAnalyticsMultiConfView</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+		</action>
+
+		<action name="viewPriceAnalyticsSubcat"
+			class="com.snapdeal.monetization.analytics.PriceAnalyticsViewActiveSubcatsAction">
+			<result name="view">/JSP/base/exceptions/viewPriceAnalyticsSubcats.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="createClusters" class="com.snapdeal.action.GroupAction">
+			<!-- <result name="activity">/JSP/base/exceptions/createclusters.jsp</result> -->
+			<result type="redirectAction" name="activity">
+				<param name="actionName">viewSummary</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>	
+		<action name="brandConfView" class="com.snapdeal.monetization.brandconfig.BrandViewAction">
+		<result name="view">/JSP/base/exceptions/managePriceAnalytics.jsp</result>
+		<result name="activity">/JSP/utility/activity.jsp</result>
+		<result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+		<result name="home" type="redirectAction">
+			<param name="actionName">rules</param>
+			<param name="namespace">/</param>
+		</result>
+	</action>
+	
+	
+	<action name="brandConfUpdate" class="com.snapdeal.monetization.brandconfig.BrandConfAction">		
+		 <result  name="viewConf">/JSP/base/exceptions/managePriceAnalytics.jsp</result>
+        <result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+	</action>
+	
+	<action name="brandConfMultiSubcatUpdate" class="com.snapdeal.monetization.brandconfig.BrandConfMultiSubcatAction">		
+		 <result  name="viewConf" type="redirectAction">
+            <param name="actionName">priceAnalyticsMultiConfView</param>
+            <param name="namespace">/exceptions</param>
+        </result>
+        <result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+	</action>
+	
+	<action name="viewBrandSubcat" class="com.snapdeal.monetization.brandconfig.BrandViewActiveSubcatsAction">
+		<result name="view">/JSP/base/exceptions/viewPriceAnalyticsSubcats.jsp</result>
+		<result name="login" type="redirectAction">
+			<param name="actionName">login</param>
+           	<param name="namespace">/</param>
+		</result>
+	</action>
+	
+
+		<action name="updateBrandDiscountingConfig" class="com.snapdeal.action.UpdateBrandDiscountingConfig">
+			<result name="updateBrandDiscountingConfig">/JSP/base/exceptions/updateBrandDiscountingConfig.jsp
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="UserSubcatMapping" class="com.snapdeal.action.UserSubcatMappingAction">
+			<result type="redirectAction" name="activity">
+				<param name="actionName">authenticateUser</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+		<action name="uploadBrandDiscountingConfig"  class="ajaxhandle.UploadBrandDiscountingConfig">
+			<result name="updateBrandDiscountingConfig" type="redirectAction">
+				<param name="actionName">updateBrandDiscountingConfig</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+	<action name="ocp" class="com.snapdeal.action.OCPAction">
+			<result name="ocp">/JSP/base/exceptions/ocp.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+            	<param name="namespace">/</param>
+			</result>
+			<result name="activity">/JSP/base/editOCP.jsp</result>
+			<interceptor-ref name="scope">
+        <param name="key">mykey</param>
+        <param name="session">ocpList</param>
+        <param name="autoCreateSession">true</param>
+    </interceptor-ref>
+    <interceptor-ref name="basicStack"/>
+		</action>
+	
+
+
+
+		<action name="fetchData" class="com.snapdeal.action.FetchDataAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+		</action>
+
+
+		<action name="downloadBrandDiscountingConfig" class="ajaxhandle.DownloadBrandDiscountingConfig">
+			<result name="updateBrandDiscountingConfig" type="redirectAction">
+				<param name="actionName">updateBrandDiscountingConfig</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="editcluster" class="com.snapdeal.action.EditClusterAction">
+			<result name="editclusters">/JSP/base/editcluster.jsp</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="BrandDiscountingConfig.csv"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+
+
+		<action name="createClusters" class="com.snapdeal.action.GroupAction">
+			<!-- <result name="activity">/JSP/base/exceptions/createclusters.jsp</result> -->
+			<result type="redirectAction" name="activity">
+				<param name="actionName">viewSummary</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="UserSubcatMapping" class="com.snapdeal.action.UserSubcatMappingAction">
+			<result type="redirectAction" name="activity">
+				<param name="actionName">authenticateUser</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+
+
+
+
+		<action name="fetchData" class="com.snapdeal.action.FetchDataAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+
+		</action>
+
+		<action name="editcluster" class="com.snapdeal.action.EditClusterAction">
+			<result name="editclusters">/JSP/base/editcluster.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="home" type="redirectAction">
+				<param name="actionName">rules</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="activity">/JSP/base/editOCP.jsp</result>
+		</action>
+		<action name="clusterlimitcheck" class="ajaxhandle.rules.ClusterLimitCheckAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+
+		</action>
+		<action name="clusters" class="action.exceptions.ClustersAction">
+			<result name="clusters">/JSP/base/exceptions/clusters.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="mop" class="action.exceptions.MOPAction">
+			<result name="mop">/JSP/base/exceptions/mop.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="removeproduct" class="com.snapdeal.RemoveProductAction">
+			<result name="removeproduct">/JSP/base/exceptions/removeproduct.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+					<result name="success" type="redirectAction">
+				<param name="actionName">removeproduct</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+				
+			<result name="uploadGenericRfs" type="redirectAction">
+				<param name="actionName">GenericRfs</param>
+				<param name="namespace">/ajax</param>
+			</result>
+		</action>
+
+		<action name="product" class="action.exceptions.ProductAction">
+			<result name="product">/JSP/base/exceptions/product.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+
+
+	<package name="teriasikitesi" namespace="/" extends="struts-default">
+		<action name="filedownload" class="action.FileDownloadAction">
+			<result name="product" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="Product.csv"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="try" namespace="/" extends="struts-default">
+		<action name="subcatUpdates" class="action.SubcatUpdatesAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+			<action name="dataSync" class="com.snapdeal.action.DataSyncAction">
+			<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+   
+		</action>
+		
+			<action name="dataSync" class="com.snapdeal.action.DataSyncAction">
+			<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+   
+		</action>
+		
+		<action name="getCacheData" class="com.snapdeal.action.GetCacheDataAction">
+			<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+   
+		</action>
+		
+		<action name="produceGroup" class="com.snapdeal.action.CashbackGroupProducerAction">
+		<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+		</action>
+		
+		<action name="groupInfo" class="com.snapdeal.action.GroupInfoAction">
+		<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+		</action>
+
+		<action name="cbeSupcEvent" class="com.snapdeal.action.CbeSupcEventAction">
+		<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+		</action>
+		
+		<action name="cbeGroupEvent" class="com.snapdeal.action.CbeGroupEventAction">
+		<result  name="success" type="stream">
+                 <param name="contentType">text/html</param>
+                  <param name="inputName">inputStream</param>
+               </result>
+		</action>
+
+		<action name="bulkUploadApi" class="action.BulkUploadApiAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+
+		<action name="rfsUpdate" class="com.snapdeal.action.RFSApiAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+		<action name="supcProcess" class="com.snapdeal.action.SupcProcessAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		
+         
+
+
+		<action name="cacheRefresh" class="com.snapdeal.action.CacheRefreshingAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+		<action name="subcatMarket" class="action.SubcatMarketingAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="healthCheck" class="action.HealthCheckAction">
+			<result name="success" type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+
+	</package>
+
+
+
+	<package name="ajaxhandle" namespace="/ajax" extends="struts-default">
+		<action name="subcatstatus" class="ajaxhandle.SubCatEnableDisableAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="GenericRfs" class="action.UploadGenericRfsList">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<!-- <result name="genericRfs" type="stream">
+			    <param name="contentType">application/csv</param>
+        		<param name="inputName">inputStream</param>
+        		<param name="contentDisposition">attachment;filename="GenericRFS.csv"</param>
+        		<param name="bufferSize">8192</param>
+			</result>
+			 -->
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		<result name="success" type="redirectAction">
+				<param name="actionName">GenericRfs</param>
+				<param name="namespace">/ajax</param>
+			</result>
+			
+			<result name="genericRfsPage">/JSP/base/genericRfsTab.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="createcluster" class="ajaxhandle.exceptions.clusters.CreateAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+		<action name="cashBackConfigUpdateAction" class="action.CashBackConfigUpdateAction">
+			<result name="cashBackConfig">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="getCmNcAction" class="action.GetCmNcAction">
+			<result name="cashBackConfig">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+
+
+
+
+		<action name="prepareclustertemp" class="ajaxhandle.exceptions.clusters.PrepareTempAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="saveclustertemp" class="ajaxhandle.exceptions.clusters.SaveTempAction">
+			<result name="clusters" type="redirectAction">
+				<param name="actionName">clusters</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="deletecluster" class="ajaxhandle.exceptions.clusters.DeleteAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="deleteclustersupc" class="ajaxhandle.exceptions.clusters.DeleteSUPCAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="saveproducttemp" class="ajaxhandle.exceptions.product.AddAction" method="fileUploadExecute">
+			<result name="product" type="redirectAction">
+				<param name="actionName">product</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="editproduct">/JSP/base/editProduct.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="addproduct" class="ajaxhandle.exceptions.product.AddAction">
+			<result name="product" type="redirectAction">
+				<param name="actionName">product</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="editproduct">/JSP/base/editProduct.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="addproductOCP" class="ajaxhandle.exceptions.ocp.AddAction">
+			<!-- <result name="product" type="redirectAction">
+				<param name="actionName">product</param>
+            	<param name="namespace">/exceptions</param>			
+			</result> -->
+			<result name="editOCP">/JSP/base/editOCP.jsp</result>
+			<result name="ocp">/JSP/base/exceptions/ocp.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+            	<param name="namespace">/</param>
+			</result>		
+		</action>
+
+		<action name="savemoptemp" class="ajaxhandle.exceptions.mop.SaveTempAction">
+			<result name="mop" type="redirectAction">
+				<param name="actionName">mop</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="deletemop" class="ajaxhandle.exceptions.mop.DeleteAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="saveremoveproducttemp"
+			class="ajaxhandle.exceptions.removeproduct.SaveTempAction">
+			<result name="removeproduct" type="redirectAction">
+				<param name="actionName">removeproduct</param>
+				<param name="namespace">/exceptions</param>
+			</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="deleteremoveproduct" class="ajaxhandle.exceptions.removeproduct.DeleteAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="updatesubcat" class="ajaxhandle.rules.UpdateSubCatAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="updatebrand" class="ajaxhandle.rules.UpdateBrandAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="calculateCM" class="ajaxhandle.rules.CalculateCMAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+ 		<action name="calculateCmpu" class="ajaxhandle.rules.CalculateCmpuAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="updatecluster" class="ajaxhandle.rules.UpdateClusterAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="updateproduct" class="ajaxhandle.rules.UpdateProductAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="updateocp" class="ajaxhandle.rules.UpdateOCPAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="savebulkuploadproducttemp" class="ajaxhandle.rules.UpdateBulkUploadProductAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="List.xlsx"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		<action name="bulkUpload" class="action.BulkUploadAction">
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="bulkUploadPage">/JSP/base/bulkUpload.jsp</result>
+			<result name="redirectToBulkUploadPage" type="redirectAction">
+				<param name="actionName">bulkUpload</param>
+				<param name="namespace">/ajax</param>
+			</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/csv</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="BulkUploadSheet.csv"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		<action name="brandlisting" class="ajaxhandle.BrandListingAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+	           	<param name="namespace">/</param>
+			</result>		
+		</action>
+		<action name="complisting" class="ajaxhandle.CompListingAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+	           	<param name="namespace">/</param>
+			</result>		
+		</action>
+		<action name="listbrand" class="ajaxhandle.ListBrandAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="bulkUploadFilesListing" class="ajaxhandle.BulkUploadFilesListingAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+
+		<action name="deletebrand" class="ajaxhandle.DeleteBrandAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+	</package>
+
+	<!-- budget rule package -->
+	<package name="budgetRule" namespace="/budgetRule" extends="struts-default">
+		<action name="budgetRuleSummary" class="com.snapdeal.monetization.budget.action.BudgetRuleSummaryAction">
+			<result name="activity">/JSP/budget/base/budgetRuleSummary.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		
+		<action name="createBudgetRule" class="com.snapdeal.monetization.budget.action.BudgetRuleAction">
+			<result name="activity">/JSP/utility/activity.jsp</result>
+			<result name="createBudgetRule">/JSP/budget/base/createBudgetRule.jsp</result>
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="downloadFile" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="ropro.pdf"</param>
+				<param name="bufferSize">8192</param>
+			</result>
+		</action>
+		
+		<action name="getBudgetCacheData" class="com.snapdeal.monetization.budget.action.BudgetCacheDataAction">
+			<result  name="success" type="stream">
+                 <param name="contentType">text/json</param>
+                  <param name="inputName">inputStream</param>
+            </result>
+		</action>
+	</package>
+</struts>
