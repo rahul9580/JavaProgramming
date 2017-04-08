@@ -1,4 +1,4 @@
-package VMWare;
+package companies.VMWare;
 
 import java.io.BufferedReader;
 import java.io.IOException;

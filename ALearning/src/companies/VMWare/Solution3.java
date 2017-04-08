@@ -1,7 +1,7 @@
 /**
  * 
  */
-package VMWare;
+package companies.VMWare;
 
 /**
  * @author rahul

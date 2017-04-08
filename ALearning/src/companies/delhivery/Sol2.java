@@ -1,7 +1,7 @@
 /**
  * 
  */
-package delhivery;
+package companies.delhivery;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -36,7 +36,7 @@ public class CreateBinaryTree {
 		binaryTreeOperations.printAllRootToLeafPath(root, path, 0);
 		System.out.println(binaryTreeOperations.diameterOpt(root));*/
 		//binaryTreeOperations.inOrderWithoutRecursion(root);
-		binaryTreeOperations.convertToThreadedBinaryTree(root);
+		//binaryTreeOperations.convertToThreadedBinaryTree(root);
 		System.out.println("Rahul");
 	}
 

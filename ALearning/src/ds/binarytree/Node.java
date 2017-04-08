@@ -13,7 +13,7 @@ public class Node {
 	private Node	left;
 	private Node	right;
 
-	Node(int data) {
+	public Node(int data) {
 		this.data = data;
 	}
 
