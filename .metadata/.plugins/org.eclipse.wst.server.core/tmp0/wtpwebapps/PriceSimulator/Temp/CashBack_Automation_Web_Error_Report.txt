@@ -1,1 +1,0 @@
-Fri Jul 31 13:16:37 GMT+05:30 2015		database.service.MOPService add								com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException: Duplicate entry '1006600-32' for key 'PRIMARY'

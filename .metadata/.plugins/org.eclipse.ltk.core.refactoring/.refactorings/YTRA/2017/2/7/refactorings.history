@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;ALearning/src/companies.yatra&apos;&#x0A;- Original project: &apos;YTRA&apos;&#x0A;- Destination element: &apos;ALearning/src/companies.yatra&apos;&#x0A;- Original elements:&#x0A;     BracesBalance.java&#x0A;     Solution.java" description="Copy compilation units" destination="=ALearning/src&lt;companies.yatra" element1="/src&lt;{BracesBalance.java" element2="/src&lt;{Solution.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1487328067786" units="2" version="1.0"/>
-</session>
