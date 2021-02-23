@@ -5,6 +5,27 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Given a string s which represents an expression, evaluate this expression and return its value.
+ *
+ * The integer division should truncate toward zero.
+ *
+ *
+ *
+ * Example 1:
+ *
+ * Input: s = "3+2*2"
+ * Output: 7
+ * Example 2:
+ *
+ * Input: s = " 3/2 "
+ * Output: 1
+ * Example 3:
+ *
+ * Input: s = " 3+5 / 2 "
+ * Output: 5
+ *
+ */
 public class BasicCalculator2 {
 
     private static final List<String> precedence = new ArrayList<>(Arrays.asList("+", "-", "/", "*"));

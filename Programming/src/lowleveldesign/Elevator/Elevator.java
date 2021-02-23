@@ -6,6 +6,5 @@ public class Elevator {
     int elevatorId;
     int currentFloorNo;
     Direction direction;
-    TreeSet<Floor> destinations; //assending
-    TreeSet<Floor> destinations; //desending
+    TreeSet<Floor> destinations;
 }
